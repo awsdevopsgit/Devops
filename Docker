@@ -1,0 +1,16 @@
+DockerImage = it contains pre-written code
+Docker hud, Docker store and Docker Repository are the three repositories in Docker
+when we create docker .docker file will be created in user home directory(/root)
+Detachedmode = we run docker in the background by the using command docker run -itd <imagename>
+Rootusermode = we run docker in the root only by using command docker run -it <imagename>
+#docker images ------> to show docker images
+#docker pull <imagename> -------> to pull docker image
+#docker rm <containerid> ------> to remove conntainer
+#docker rmi <imagename> ------> to remove image
+#docker stop <container id> ------> to stop container
+#FROM centos:latest ----> to create centos docker file
+#MAINTAINER dhana <mailid> ------> maintainer of the file
+#RUN apt-get update -y ------> the command that we want to run on the docker file
+#docker build -t <nameof the file> path of the file
+#docker tag <imageid> <newimagename> ----------> to rename docker image
+ 

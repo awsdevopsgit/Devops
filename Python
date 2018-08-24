@@ -1,0 +1,4 @@
+import os                        }
+clear=lambda:os.system('cls')    }
+clear                            } ---->to clear screen
+Data types = integer, bulion and string

@@ -1,7 +1,23 @@
+docker is container tool and container has images and applications.
+docker hub, docker store and docker registry are three docker repositories
+=================================================================================
 DockerImage = it contains pre-written code
 Docker hud, Docker store and Docker Repository are the three repositories in Docker
 when we create docker .docker file will be created in user home directory(/root)
 Detachedmode = we run docker in the background by the using command docker run -itd <imagename>
+i=interactive, t=terminal, d=detached
+docker ps ----> to display running containers
+docker ps -a ----> to display all containers
+docker attach <container id> ----> to start docker conatiner
+cntrl+P+Q ----> to exit from container
+docker login -----> to login into docker hub
+docker search <image name> ---> to search images in docker hub
+docker stop <container id> ----> to stop container
+docker build -t <imagename> <filelocation> ----->to build docker image
+docker tag <imageid> new imagename ---> to change docker image name
+docker push <imagename> ----> to push docker image to the docker hub
+docker run -itd -v /opt/prasad:/opt/prasad ubuntu ---> to move images from one container to another
+docker inspect <container id> -----> to image details
 Rootusermode = we run docker in the root only by using command docker run -it <imagename>
 #docker images ------> to show docker images
 #docker pull <imagename> -------> to pull docker image

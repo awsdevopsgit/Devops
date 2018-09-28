@@ -1,0 +1,9 @@
+chef-apply <filename> ----->to create file
+knif bootstrap ip -x root -p password -N nodename ---> to connect with the chef client server
+chef-client -----> used to check in the client server
+knif cookbook create <CBname> ---> to create CB
+knif cookbook test <CBname> ----> to test cookbook
+knif upload <CBname> ---> to upload CBname chef server
+knif cookbook list ---> it will list the available CB in the client server
+in chef-repo-->.chef-->we have 2 files are 1. .pem and 2. knif.rb
+when we download 

@@ -6,4 +6,27 @@ knif cookbook test <CBname> ----> to test cookbook
 knif upload <CBname> ---> to upload CBname chef server
 knif cookbook list ---> it will list the available CB in the client server
 in chef-repo-->.chef-->we have 2 files are 1. .pem and 2. knif.rb
-when we download 
+when we download starter kit from cheff server it will generate cheff-repo dir in the cheff DK inside this we have .pem and knif.rb files to get connected with cheff server.
+knif cookbook list ------> will show cookbook list in cheff DK
+knif cookbook delete <CBname> ------> will delete CB
+============================================================================================================================================================================== 
+COOKBOOK Default.rb file
+-------------------------------------
+package "httpd" do
+action :install
+end
+service "httpd" do
+action :enable
+end
+service "httpd" do
+action :start do
+end
+file '/var/www/html/index.html' do
+content '<html>
+<body bgcolor="cc4400">
+<hi> "Hello chef-client" </hi>
+</body>
+</html>'
+end
+-----------------------------------------
+kinf node run_list add <nodename> "recipe[CBname]"

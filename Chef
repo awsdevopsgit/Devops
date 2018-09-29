@@ -30,3 +30,49 @@ content '<html>
 end
 -----------------------------------------
 kinf node run_list add <nodename> "recipe[CBname]"
+knif data bag create users -------> it will create users in data bags
+knif data bag create group -------> it will create group in date bags
+kinf data bag from file users user1.json -------> to move files from cheff DK to the cheff server
+=============================================================================================================================================================================
+JSON for creating users and group
+----------------------------------
+Users
+-------
+{
+"id": "user1",
+"comment": "devops user1",
+"uid": 2000,
+"gid": 0000,
+"home": "/home/user1",
+"shell": "/bin/bash"
+}
+Group
+------
+"id": "devops",
+"gid": 3000,
+"users": ["user1", "user2"]
+}
+==========================================================================================================================================
+Searching for variables through CB
+------------------------------------
+search("users", "*:*").each do |user_data|
+user user_data["id"] do
+comment user_data["comment"]
+uid user_data["uid"]
+gid user_data["gid"]
+home user_data["home"]
+shell user_data["shell"]
+end
+end
+include_recipe "users::groups" ----------->including users to the group
+search for groups
+------------------
+search("groups", "*:*").each do |group_data|
+groups group_data["id"] do
+gid groups_data["gid"]
+members group_data["members"]
+end
+end
+
+
+

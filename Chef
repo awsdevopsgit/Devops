@@ -1,3 +1,5 @@
+keywords: data_bags, roles, cookbooks, starter kit, chef supermarket,  
+---------
 chef-apply <filename> ----->to create file
 knif bootstrap ip -x root -p password -N nodename ---> to connect with the chef client server
 chef-client -----> used to check in the client server
@@ -73,6 +75,6 @@ gid groups_data["gid"]
 members group_data["members"]
 end
 end
-
-
+============================================================================================================================================
+-->in chef super market we will have cookbooks that we can download as per our requirement.
 

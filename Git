@@ -1,0 +1,35 @@
+$git init -----> it turns a directory into an empty git repository.
+$git add ------> this command add all the development changes to the staging(index) area so that git commit command can work to commit changes to the local repository.
+$git reset HEAD <filename> ------> it unstages the file back
+$git commit -------> this command record the changes made to the files in local repository and every commit has a commit id for the easy reference.
+$git status -------> this command returns the current working branch state of the repository, if there are no changes made to the cummint it will return nothing to commit working branch clean.
+$git config -------> this command configures the name and email address assigned to commits from a local computer.
+                     git config --global user.name "dhana"                   }
+                     git config --global user.email "dhanagaajula@gmail.com" } Globally
+                     
+                     git config user.name "dhana"
+                     git config user.email "dhanagaajula@gmail.com"
+git branch : branch is used to create another line of development, by default git has master branch, git barnch is created to work on a new future once the it done, we can merge it to the master branch and delete ftuture branch.
+---------- 
+$git branch -----> git branch list all the branches including master
+$git branch <branch name> ------> it creates git branch
+$git checkout <branch name> ------> it switched to another branch
+$git branch -d <branch name> -------> it delete branch 
+$git checkout -b <branch name> -------> it creates branch and switched to the newly created branch
+$git merge <branch name> ------> it merge branches to the master, for that first we need check into the master branch and then do merge.
+$git remote add origin <git repository SSH or https link> ------> it connects to the git remote repository
+$git clone <SSH or https ling of remote repository>-------> it creates local working copy of an existing remote repository.
+$git pull origin master ------> it pulls changes made in the remote repositary.
+$git push origin master ------> it push the changes made to the local repository to the remote repository
+$git stash ------> to save changes when they are not in a state to commite to the repository.
+$git stash -u -------> it makes working directory clean and saves the changes that are not in a state to commite to the repository.
+$git stash list -------> it lists the modified stash.
+$git stash show -------> it shows the git stash list.
+$git stash apply -------> it role backs the saved changes to the working directory
+$git log ------> this helps give context and history for a repository.
+$git log --before="date" ------> it shows logs based on the commites made before the given date.
+$git log --author="author name" -------> it shows logs based on the commits made by the author.
+$git log --oneline --------> it shows the commits in one line
+$git rebase ------> takes a set of commits, copies them and stores them outside our repository.
+$git revert ------> it helps us to roll back to the previous version of the file.
+#git revert HEAD -------> it revert back to the last commite.

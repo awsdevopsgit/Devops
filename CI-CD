@@ -1,0 +1,18 @@
+Devops=Devops is a software development approach which involves continous development, continous testing, continous integration, continous deployment and continous monitoring through out its development life cycle.
+                                                   Devops Stages
+                                                   --------------
+Version Control               Continous Integration                 Continous Delivery                    Continous Deployment
+---------------               ---------------------                 ------------------                    --------------------
+Maintains different         Compile, validate, code review,       Deploying the build application       Deploying the tested application
+versions of the code        unit testing, integrated testing      to the test servers and performing    on the prod server for release
+                                                                                UAT
+  Source code mgmt                 Continous build                       Continous Integration          Configuration mgmt and Containerization
+         |                                  |                                       |                                       |
+         --------------------------------------------------------------------------------------------------------------------
+                                                                |
+                                                        Continous Monitoring           
+Unit testing: It is the process of testing each part of code how its work
+Integration testing :It is process of how all the parts of code working together
+Pipeline: It is the logical or sereas of steps which define how SDLC accures.                                                   
+CI: As soon as developers commits the code into the version control system it conntinously merging the process and continously building the process simontaniously that is the reson it is know as continous integration.                            
+Jenkins: Jenkins is an open source tool written in java with plugins built for continous integration purpose, plugins allows integration of various devops stages.

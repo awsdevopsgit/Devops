@@ -2,3 +2,62 @@ import os                        }
 clear=lambda:os.system('cls')    }
 clear                            } ---->to clear screen
 Data types = integer, bulion and string
+Python
+--------
+Python script-when doing a normal procedural way calling python without oops concept is called python script.
+Python program- If we put concept of object oriented an oops and trying to run then we can call it as program
+/ -it is used separate one big line into two.
+; - it is used to separate two line.
+String – it is value of char or num or combination of both
+Executables – python file.name.py or ./file.python(this should have exe permission(7/-x))
+Variables – are nothing but reserved memory locations to store some value.
+============================================================================================================================================
+Variables
+------------
+no. of items=127
+no. of items="127"
+total price=30
+no.of items+1= we get an error bcoz its treats no.of items as string so to get result we should use "int(no.of items)"
+price of one item= total price/no.of items(30/127) we result as 0, to get result accuratly we should use "price of one itemo.of items=
+#float(total price)/no.of items
+#round(float(total price)/no.of items,4) ----------> if we want to round results for 4 digits.
+#type(no.of items) -------> it tells about which variable no.of items is
+#total price +=1.6
+#total price *=2
+==============================================================================================================================================
+STRINGS
+--------
+SERVER_NAME = "tomcat" --------> we use " " to define string
+SERVER_TYPE = 'appserver' -------> we also use ' ' to define string
+#print SERVER_NAME -------> It will print server name as tomcat
+#SERVER_DESC = """my tomcat application server""" --------> """ are used to define multiple strings
+#print "server name: %s" % (SERVER_NAME)----->It prints results as server name: tomcat
+#len(SERVER_DESC) -------> It gives lenth of the string(27)
+#SERVER_DESC1 = "server" + SERVER_NAME + "is" + SERVER_TYPE
+#print SERVER_DESC1
+     ----> It prints strings and variables join result as server tomcat is appserver
+SERVER_DESC1 = " ".join(("server", SERVER_NAME, "is", SERVER_TYPE))
+#print SERVER DESC1 
+      --------> It will join strings and variables 
+#"tomcat" in SERVER_DESC --------> It gives result as TRUE
+#"apache" in SERVER_DESC --------> It gives result as FALSE
+#SERVER_DESC.find("tomcat") ------> It gives lenth of tomcat in SERVER_DESC
+#SERVER_DESC1[0:6] -------> It gives result as server which is first 6 letters in the SERVER_DESC1 variable.
+#SERVER_DESC1[-9:0] -------> It gives result as appserver which is lenth of appserver in the SERVER_DESC1 variable from last.
+#SERVER_DESC1[SERVER_DESC1.find("is"):] ---------> it gives result as is appserver
+#SERVER_DESC1.replace("tomcat","apache") --------> it replaces the string
+STRIP = "  mystrip  "
+#STRIP.strip() ------> it removes white spaces in the STRIP string
+#STRIP.lstrip() -------> it removes white spaces from left side of the string
+#STRIP.rstrip() -------> it removes white spaces from right side of the string
+@STRIP.rstrip("p ") -------> it removes white spaces from right side of the letter p in the string
+===============================================================================================================================================
+MODULES
+---------
+DEFINITION -----> Module is pre written function that we can add to our script.
+#import subproces ---------> "subprocess" is the module which contains functions.
+#dir(subprocess) ----------> it shows the available functions in subprocess module.
+#host_name = subprocess.check_output("hostname") ---------> it is used to call a function in a module
+#host_name
+       -----> it prints host name.
+===============================================================================================================================================

@@ -1,0 +1,107 @@
+$ansible all -m ping
+$ansible all -a "ls -ls /home/ansible"
+$sudo or ansible all -s -a "cat /var/log/messeges"
+$ansible centos -m copy -a "src=test.txt dest=/tmp/test.txt "
+$ansible ubuntu -s -m apt -a "name=elinks state=latest"
+$ansible centos -s -m user -a "name=test"
+$ansible centos -s -m user -a "name=test state=absent"
+$ansible all -a "/bin/true"
+$ansible all --list-hosts
+$cat /etc/ansible/hosts
+$ansible centos -m setup -a 'filter=*ipv4*'
+$ansible centos -m setup | grep ipv4
+$ansible centos -m setup --tree facts
+$ansible centos -m setup -a 'filter=ansible_domain'
+$ansible-playbook "playbookname(.yaml file)" ------> command to run playbook
+$ansible-playbook "playbookname(.yaml file)" --extra-vars "myhosts=centos gather=yes pkg=telnet" ------> 
+$yum install epel-release
+=============================================================================================================================================
+PLAYBOOKS STRUCTURE
+---------------------
+--- # This is a structural YAMLexamples to install HTTPD on CENTOS 
+- hosts: centos
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+  vars:
+    username: myuser
+  tasks:
+  - name: install HTTPD on CENTOS 7 Nodes
+    yum:
+     name: httpd
+     state: latest
+    notify:
+    - start serrvice
+  handlers:
+  - name: start service
+    service:
+      name: httpd
+      state: restarted
+------------------------------------------------------------------------------------------------------------------------------------------      
+PLAYBOOK STRUCTURE FOR VARIABLES
+---------------------------------
+--- # Testing how vaibles work in the vars section of a playbook
+- hosts: '{ myhosts }'
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: '{{ gather }}'
+  vars: 
+    myhosts: centos
+    gather: yes
+    pkg: telnet
+  tasks:
+  - name: install the indicated software
+    yum:
+     name: '{{ pkg }}'
+     state: latest
+------------------------------------------------------------------------------------------------------------------------------------------     
+PLAYBOOK STRUCTURE FOR DEBUG STATEMENT
+---------------------------------------
+--- # Testing how vaibles work in the vars section of a playbook
+- hosts: '{ myhosts }'
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: '{{ gather }}'
+  vars: 
+    myhosts: centos
+    gather: yes
+    pkg: telnet
+  tasks:
+  - name: installing telnet package
+    yum:
+     name: '{{ pkg }}'
+     state: latest
+    register: result
+  - debug: var=result   
+------------------------------------------------------------------------------------------------------------------------------------------
+PLAYBOOK STRUCTURE FOR NOTIFICATION AND HANDLERS
+---------------------------------------------------
+
+--- # Notification and Handlers 
+- hosts: centos
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: install ngnix web server
+    yum:
+     name: ngnix
+     state: latest
+    notify:
+    - enable and start the ngnix service
+  handlers:
+  - name: enable and start the ngnix service
+    service:
+      name: ngnix
+      enabled: yes
+      state: restarted
+-------------------------------------------------------------------------------------------------------------------------------------------
+

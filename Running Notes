@@ -1,0 +1,3875 @@
+AWS my architecture--160+
+aws 10 minutes
+aws quick labs
+aws reinvent
+aws faqs---exam
+====================
+
+Pre-Req
+github account
+AWS account
+
+Infrastructure
+---->Data center
+-->Storage components( object--s3(google drive) and block storage(disc))
+-->Network components--DNS--Route53
+-->Computing components(CPU and RAM)--Bare metal ---Hypervisor 
+
+
+
+Route53---NS, Hosted zones and record sets, TLD
+how name will be converted into ip address ?(name resolution)
+
+
+why we need external storage ?
+internal storage
+
+computing components --------n/w----------------------storage--SAN/NAS
+
+On-prem
+every company has their own dc
+
+power-----
+
+Projects---power stations ----substations---poles------home
+cloud
+
+
+dc----computing+network+storage-------client 
+cloud ----pay per service
+cloud providers(aws+azure+aliabab+gcp..)
+infra cost + upgradation + maintanance
+
+
+
+
+
+
+danone---on-prem
+
+aws--
+
+DC--region--geo separated location of dc related to aws
+az--availability zones
+regiono =2 az
+
+for ex:us-east-2 ( ohio)--Region name
+az names
+us-east-2a
+us-east-2b
+us-east-2c
+
+
+
+hypervisor
+
+vmware(workstation + ESxi), virtualbox, kvm,xen
+
+personal--windows 10 
+enterprise--windows server 2016
+
+softlayer---IBM private cloud
+on-site/on-prem
+Akamai
+
+Edge(h/w) location-cache component (AWS cloudfront)--static content
+------------------------------
+
+CDN- Content delivery network
+
+machine never understands names and it requires ip address for the n/w communication.
+what is the need of n/w ?
+n/w--data sharing
+servers always use physical communication with the ethernet/NIC card
+every nic is have ip address. 	
+
+
+=============================================
+Day:3
+IP address- Private ip and public ip(ifconfig/ipconfig)
+DNS(nslookup,host,digi)
+port ( netstat,lsof)
+ssh ( ssh,telnet)
+RDS,mstsc
+Remote login
+Operating systems and flavours
+
+lab:block website
+find your gateway  and ip address and subnet mas
+ping 10 websites(3 wront and 7 success) and increase the packet count
+nslookup for 10 websites(5 wrong websites and 5 success)
+
+IP address versions:IPv4(numeric) and IPV6(128bit---alpha numeric)
+IPV4(32 bit)
+(0-255)
+xxx.xxx.xxx.xxx
+
+Computer---------------Router/Nat Gateway/Nat Instance/Proxy(fwd)--------------------------internet
+
+if servers want to go to internt we use proxy or nat gateway
+ip addresses public and private
+Private ip address
+10.xx.xx.xx
+192.
+172
+it can be duplicate based on network zone.
+private ip adress area called a intranet.
+Privaete websites always have private ip.
+
+Public ip
+other than private series
+public ip address area called a internet(0.0.0.0).
+can be accessed from anywhere and unique(no duplicate)
+public websites will have  public ip address.
+
+
+
+To know ipaddress of your website/hostname/servername
+nslookup <websitename>/<hostname>/<servername>
+
+www.google.com ---------------------->DNS Server(NS)----www.google.com | 172.217.xxx and ipv6
+
+
+ping used to check up <websitename>/<hostname>/<servername> or responding or not.
+ping will send icmp(Internet chat msg protocal) packets.
+in AWS ping is disabled by default.
+in windows ping will send 4 icmp
+in unix its unlimited
+
+
+www.google.com
+
+Request format:
+protocal://<websitename>/Hostname/servername/IPaddress :<port>/contextroot
+
+
+mandatory: protocal
+ipaddress
+port
+
+ex:1
+https://www.google.com/
+protocal: https
+websitename: www.google.com
+port: 443
+contextroot: /
+
+
+http://www.eenadu.net/
+
+ex:-2
+protocal: http
+websitename: www.eenadu.net
+port: 80
+contextroot: /
+
+
+port : numerical number and assigned to a service in your machine.
+to access that service you have to use port number.
+
+
+india
+www.eenadu.net------------>DNS(www.eenadu.net | 100x.xx)
+------->chennai---->singaport---xxx...xx..
+
+
+
+eenadu.net (US)--dc--Physical sserver(ethernet port---80 service)--lan cables----
+100.xxx.x.x.x
+
+
+www.eenadu.net------>hosts(local dns)----->
+
+every machine 127.0.0.1 ---loop backup ip --lo
+
+
+
+
+
+
+
+
+
+=============================================
+Day-4:
+----------------------------------------------
+Block the websites
+
+Review of yesterday and previous day
+AWS account login
+basics of software installation(.exe,.bat,rpm,yum,apt-get)
+Basics of windows, login and admin login
+Normal user and system admin
+
+
+Block the website: C:\Windows\System32\drivers\etc\hosts
+/etc/hosts -Unix environment
+
+
+www.eenadu.net------hosts-----ISP---DNS(tld)---peerDNS----destination server
+
+protocal: http
+port:80
+websitename : www.eeandu.net---127.0.0.1
+
+open the notepad in administrator mode-->file-->open-->C:\Windows\System32\drivers\etc\hosts
+
+Connection refused: you have ip address and you are reaching to server and your port not listening.
+			   the service on the port number stopped.
+
+DNS_PROBE_xxx: wrong dns name or dns entry not found(check with nslookup)
+
+
+Windows: how do you install the software ?
+browser--->internet--->Repository--software/package/artifacts(store all the packages)------>download into your local-->
+
+repository/artifactory--software packages storing location.
+
+.exe (executable)--windows-GUI-Graphical user interface/CLI(command line interface)
+.bat(batch)
+.dll
+.bin
+.msi (microsoft installer)
+c:\ProgramFiles
+
+wizard installation(accept--next --next).
+
+
+Unix ---CLI
+.rpm ( redhat package manager)
+.tar
+.zip
+.tar.gz
+.tgz
+and with yum ( yellowdog update manager) , apt-get
+/usr/
+
+laptop ---bios---os----kernel---Desktop----C
+
+Windows--Drives--Format C:\
+
+command prompt----C:\Users\<username>
+
+C:\Users\<username>\Desktop
+
+user home directory: C:\Users\<username>
+user profile directories and files
+Desktop
+Downloads
+Pictures
+Videos
+Documents
+
+
+
+mutli user os
+multe user accounts
+
+c:\Users\a(Desktop,Downloads..etc)
+c:\Users\b(Desktop,Downloads..etc)
+c:\Users\c(Desktop,Downloads..etc)
+
+
+lab: create one user in your laptops with devops name and put a password for that user.
+login with that user into system and see desktop and compare with the previouosly used user.
+
+
+
+
+cd - change directory
+cd .. ( come back one directory back)
+cls (clear screen) -- clear or ctrl+l(unix)
+
+any os during installation user will be created(administrator/Power user/root user)
+
+Administrator can create multiple users(normal users).
+port numbers: 1-1024 port admin users
+1025 to 35k -- normal users.
+
+
+
+=========================
+what is the need of cloud ?
+what is the need of devops ?
+basics of networking ?
+ping--icmp -4- 
+nslookup/host
+dig
+traceroute/tracepath (unix)
+tracert (windows)
+
+
+=========================
+SDLC
+ETA
+Waterfall-legacy
+drafting---analsis---prototype---poc(demo project)(dev+testing(qa)+build infra+deploy)-----end users
+
+Agile/Kanban
+devops---delivering the product fast approach and getting feedback also fast apporach.
+every day meeting --scrum call/stand up call
+sprints---20 days ---deployment in prod(end users access)sprint meeting---jira tickets--dev/testing/devops---stroy points(days)
+environments
+dev
+qal
+perf
+------------all goes well in lower environments -- tester/qa creates a CR(change request) for deployment ,,SNOW/BMC remedy.
+
+prod--bug(dev issue or infra)-----jira ticket
+
+
+jira--ticket--queued --progress--completed---review--closed.--blocked
+
+jira(dev+test+devops)
+Servicenow(SNOW)--prod
+jenkins(CI)--dev+devops+tester+load test
+CD--chef+ansible+spinnaker+argoCD
+testing/load test/code analysis---SonarCube/TestNG/Cobertura/Jmeter(load)
+
+
+
+devops --
+
+test driven devoplopment approach
+
+
+dev team (local laptop)--coding-----source code management systems---github/svn/cvs--(raw/source code)
+---->compile/execute/pack(build)---ant,maven,msi builders and graddle----
+	code quality test cases
+	junit test cases(intergration test cases)---developers
+---->deployment(dev)--smoke test/sanity testing
+---->testing(qa--functinal testing)--green
+---->go for deployment --qal
+----> testing(qa--functional)---green
+--->deployment in perf---
+---->load testing (performance testing team--jmeter/load runner)
+
+QA team Create a CR and assing to devops team.
+CR contains.
+schedule start date/time ,duration, apporvals and plan of execution(documents/release docs). 
+
+program(source code)---compile---execute
+
+code---scm--build--deploy--test(lower)--release--prod-
+
+s3
+ec2
+ebs
+
+
+admin team:
+Browser------>AWS console----Infrastrcture----DC--Region---AZ
+aws cli--------------->infra---DC---Region---AZ
+
+
+dev team
+java/.net/python..etc------>infra--DC--Region---AZ
+
+
+Day-5:
+======
+aws account--ec2 launch
+
+Day-6:
+======
+devops intro
+Day-7:
+========
+launch windows and linux
+
+laptop(mstsc/rdp)------>aws--region--zone--securty group(3389)--windows ec2/instance/vm/server
+laptop--ssh clients(putty)-------------->unix(redhat)
+protocal: ssh
+port:22
+
+
+user=redhat--ec2-user
+     ubuntu-- ubuntu
+pem file
+
+
+Adminitrator and password(pem)/private key
+
+lab:launch linux
+step-1: create sg- allow inbound 22-ssh - anywhere
+step-2: launch ec2 machine
+
+userdata: during ec2 launch time if you want to install any services , provide those info userdata.
+windows--
+username
+password
+-------------->Desktop
+
+C:\Users\<username>\Desktop,Downloads,Pictures,Videos,Documents..etc
+
+linux:
+username:ec2-user
+password/pem
+/home/ec2-user/
+
+/home=C:\Users
+
+/home/ --normal users home directory
+/root -- root user home directory
+/ =Mycomouter/This PC
+dir=ls
+
+
+
+putty---puttygen and putty
+puttygen--generate public and private key and to convert pem into ppk
+putty - to connect unix envionments
+
+C:\
+
+[ec2-user@ip-172-31-28-125 ~]$
+
+[username@servername ~]$
+$=normal user prompt
+~=home directory
+/home/<username>
+/home
+commands:
+1. uname
+2. hostname
+3. pwd
+4. date
+5. whoami
+6. history
+7. cd .. ( back one directory)
+8. cd  ( takes to home directory)
+9. ls -l ( long  list and sort based on names)
+d=directory
+- = file
+10.chmod
+11.chown 
+12. touch
+13. w or who(pending on multi user)
+14.uptime
+
+
+filetype permissions ownership size date of creation/update  filename/dirname
+
+r=read=4
+w=write=2
+x=execute=1
+7=rwx
+
+--- --- --- =9
+owner
+group
+others
+
+rw-r--r--
+644
+
+
+755
+rwxr-xr-x
+
+chmod 777 filename
+chmod -R 777 directory
+r=recursively
+
+
+
+
+ssh -i <pemfile> username@ip/dnsname
+
+
+
+AWS Deployment models
+blue/green deployment
+blue=live=1.0----green
+green=latest=2.0---live--blue
+
+devops deployment models
+b/g
+canary
+ec2 --security group--firewall
+0.0.0.0
+LAB:
+create two ec2 machines
+make one as bastion
+another one as application
+
+create two security groups
+name: bastion-sg and application-sg
+bastion-sg
+ssh-22-0.0.0.0
+application-sg
+ssh--22--bastion-sg
+
+first connect to the bastion
+ssh -i devops.pem ec2-user@18.206.154.64
+
+ssh clients: putty , gitbash and mobxterm
+to copy from local to remote server
+filezilla--gui
+winscp--gui
+scp
+
+
+scp -i devops.pem devops.pem  ec2-user@18.206.154.64:/home/ec2-user/
+
+remote port open or not 
+
+
+
+s3 is simple storage service==google drive==object storage
+its unlimited
+
+buckets--->5TB
+standard----default--immidiately
+infreequent--minuites
+glacier--archive data----hours time
+
+s3 life cycle management
+
+
+telnet ip/name port
+nc (netcat)
+nc -v ip port
+connection failed to application ec2 machine
+success for bastion ec2 machine
+ping
+connection timeout(ssh -22)
+Cloudtrail
+
+0.0.0.0--sg---notification--cloudtrail-------------lamda functions-----email--us---redsignal
+
+==================
+Day-8--Week-2
+=================
+bastion- done-security group -- 0.0.0.0/0 ---22--ssh---pem: bastion
+web: security group --- 22--ssh -- bastion-sg
+vpn--
+lab: assign a elastic ip to ec2 machine and deassociate.
+
+
+
+[ec2-user@ip-172-31-90-96 ~]$ whoami
+ec2-user
+[ec2-user@ip-172-31-90-96 ~]$
+
+
+[user@hostname]$
+[root@hostname]#
+
+
+gangi
+
+typing commands---shell(bash/ksh/csh/zsh)----kernel---hardware
+kernel==high level language to low level 
+english to machine level understand language.
+
+bash = shell and checks your commands synatax and semantic.
+lab:-
+Changing the hostname of ec2 machine.
+/etc/hostname
+/etc/hosts
+
+
+users: Administrator(root) and normal user(ec2-user)
+
+/home/<username>
+/home/ec2-user
+
+
+Normal uuser------->root
+su - root
+su 
+su -
+---------------------------->need password of root user.
+su - otheruser
+
+--------->other user password
+============================================
+ec2-user-------------->sudoers
+
+vi /etc/hostname -----------
+modes: readonly(escape) /insert /execution 
+
+after entering into insert mode --enter your cotnent---to save
+esc + shift + ; ---wq!
+w=write/save
+q=quit
+!=forceful come out of vi
+
+/etc/hosts
+
+privateip bastion
+
+hostname -F /etc/hostname
+
+
+bastion--
+webserver
+Loginto the webserver
+yum install httpd -y -----------instal httpd/apache webserver--80--
+systemctl start httpd -----------start httpd/apache
+
+
+bastion-webserver
+[root@webserver ec2-user]#
+[root@webserver ec2-user]# systemctl start httpd
+[root@webserver ec2-user]# ps -ef | grep httpd
+
+protocal://ip:port/
+
+
+http://54.89.102.180/------------------web-sg--(80)-----ec2---80---apache
+
+
+
+
+tell your webserver ip--
+
+what is ssh and telent ?
+diff
+
+==============
+Day-9--Week-2
+==============
+lab:-
+bastion-webserver(apache/httpd)
+changing the hostname
+assigning EIP
+
+
+to play the videos of our recording--install the web.exe( upload in sometime to webserver).
+
+
+IAM basics
+Need of IAM
+-->creating the users in IAM
+-->Roles 
+-->Assigning the roles to aws services--ec2
+-->basics of linux
+
+
+next?
+
+Select the security group as myip--tell me the ip address ?
+
+
+Cloudtrail=all the aws console clicks and activities will be saved into cloudtrail(auditing).
+
+
+Poweruser--Root user of AWS console--has access to all the services.
+--->all the people not use all services.
+
+
+users will be used by us.
+
+roles will be used by aws services.
+
+https://644308608816.signin.aws.amazon.com/console
+
+
+AWS console--username and password---MFA.
+----->policy--json format.
+         set of instructions(permissions) and actions.
+default policy(aws gave default) and custom policy(we need to create--policy generator).
+
+lab:create devmember1 and assign ec2read only .
+login with that user.
+
+create the group -- testing and assign cloudwatchfull access policy.
+
+ARN: amazon resource name.
+
+authentication: username and password
+authorization : level of policy/role.
+
+create user: devops-admin
+provvide : administrator
+
+
+create role called: ec2-member and give s3 access, assign the role to ec2 machine.
+
+what is the IAM user and power user and role ?
+
+types of access to users ?
+
+next ? how to create cross account IAM role ?
+
+
+ec2---linux , windows
+
+==============
+Day-10--Week-2
+==============
+lab:-
+launch ec2--windows as bastion
+launche--ec2--linux--webserver
+
+
+------>bastion--->3389--0.0.0.0/0----bastion-sg
+------>webserver-->22---bastion-sg 
+bastion---gitbash or putty----
+
+
+s3----simple storage service
+-->bucket (objects--files or directories)
+-->bucket level policy
+-->s3 cross region
+-->bucket level security and encryption
+-->Versioning
+-->command line access to s3 service
+-->s3 as a static website hosting
+-->Cloudfront (CDN)
+
+s3 bucket can be public or private.
+s3 is a regional service and can be accessed from anywhere.
+
+
+IAM role--->ec2-member---->full s3------>ec2 machine
+
+s3 --storage types in s3.
+standard
+infreequent
+glacier
+
+
+Apache--http server/web server--80-----------ec2---OS
+static content 
+
+s3
+
+how do enable the bucket level policy ?
+how do you enable lifecycle, versioning, cross region and other account access ?
+make bucket as a static hosting ?
+what is s3 ?
+
+lab: Hosting a Static Website on Amazon S3
+
+https://www.free-css.com/free-css-templates/page233/innova
+
+
+Route--53---hosted zone---record set---www.awsmiddleware.in------------s3 endpoint
+
+
+
+http://awsmiddleware-admin.s3-website-us-east-1.amazonaws.com/s3.wrf
+http://awsmiddleware-admin.s3-website-us-east-1.amazonaws.com/web.exe
+
+AWS Deployment models
+blue/green deployment
+blue=live=1.0----green
+green=latest=2.0---live--blue
+
+devops deployment models
+b/g
+canary
+ec2 --security group--firewall
+0.0.0.0
+LAB:
+create two ec2 machines
+make one as bastion
+another one as application
+
+create two security groups
+name: bastion-sg and application-sg
+bastion-sg
+ssh-22-0.0.0.0
+application-sg
+ssh--22--bastion-sg
+
+first connect to the bastion
+ssh -i devops.pem ec2-user@18.206.154.64
+
+ssh clients: putty , gitbash and mobxterm
+to copy from local to remote server
+filezilla--gui
+winscp--gui
+scp
+
+
+scp -i devops.pem devops.pem  ec2-user@18.206.154.64:/home/ec2-user/
+
+remote port open or not 
+
+
+
+s3 is simple storage service==google drive==object storage
+its unlimited
+
+buckets--->5TB
+standard----default--immidiately
+infreequent--minuites
+glacier--archive data----hours time
+
+s3 life cycle management
+
+
+telnet ip/name port
+nc (netcat)
+nc -v ip port
+connection failed to application ec2 machine
+success for bastion ec2 machine
+ping
+connection timeout(ssh -22)
+Cloudtrail
+
+0.0.0.0--sg---notification--cloudtrail-------------lamda functions-----email--us---redsignal
+
+==================
+Day-8--Week-2
+=================
+bastion- done-security group -- 0.0.0.0/0 ---22--ssh---pem: bastion
+web: security group --- 22--ssh -- bastion-sg
+vpn--
+lab: assign a elastic ip to ec2 machine and deassociate.
+
+
+
+[ec2-user@ip-172-31-90-96 ~]$ whoami
+ec2-user
+[ec2-user@ip-172-31-90-96 ~]$
+
+
+[user@hostname]$
+[root@hostname]#
+
+
+gangi
+
+typing commands---shell(bash/ksh/csh/zsh)----kernel---hardware
+kernel==high level language to low level 
+english to machine level understand language.
+
+bash = shell and checks your commands synatax and semantic.
+lab:-
+Changing the hostname of ec2 machine.
+/etc/hostname
+/etc/hosts
+
+
+users: Administrator(root) and normal user(ec2-user)
+
+/home/<username>
+/home/ec2-user
+
+
+Normal uuser------->root
+su - root
+su 
+su -
+---------------------------->need password of root user.
+su - otheruser
+
+--------->other user password
+============================================
+ec2-user-------------->sudoers
+
+vi /etc/hostname -----------
+modes: readonly(escape) /insert /execution 
+
+after entering into insert mode --enter your cotnent---to save
+esc + shift + ; ---wq!
+w=write/save
+q=quit
+!=forceful come out of vi
+
+/etc/hosts
+
+privateip bastion
+
+hostname -F /etc/hostname
+
+
+bastion--
+webserver
+Loginto the webserver
+yum install httpd -y -----------instal httpd/apache webserver--80--
+systemctl start httpd -----------start httpd/apache
+
+
+bastion-webserver
+[root@webserver ec2-user]#
+[root@webserver ec2-user]# systemctl start httpd
+[root@webserver ec2-user]# ps -ef | grep httpd
+
+protocal://ip:port/
+
+
+http://54.89.102.180/------------------web-sg--(80)-----ec2---80---apache
+
+
+
+
+tell your webserver ip--
+
+what is ssh and telent ?
+diff
+
+==============
+Day-9--Week-2
+==============
+lab:-
+bastion-webserver(apache/httpd)
+changing the hostname
+assigning EIP
+
+
+to play the videos of our recording--install the web.exe( upload in sometime to webserver).
+
+
+IAM basics
+Need of IAM
+-->creating the users in IAM
+-->Roles 
+-->Assigning the roles to aws services--ec2
+-->basics of linux
+
+
+next?
+
+Select the security group as myip--tell me the ip address ?
+
+
+Cloudtrail=all the aws console clicks and activities will be saved into cloudtrail(auditing).
+
+
+Poweruser--Root user of AWS console--has access to all the services.
+--->all the people not use all services.
+
+
+users will be used by us.
+
+roles will be used by aws services.
+
+https://644308608816.signin.aws.amazon.com/console
+
+
+AWS console--username and password---MFA.
+----->policy--json format.
+         set of instructions(permissions) and actions.
+default policy(aws gave default) and custom policy(we need to create--policy generator).
+
+lab:create devmember1 and assign ec2read only .
+login with that user.
+
+create the group -- testing and assign cloudwatchfull access policy.
+
+ARN: amazon resource name.
+
+authentication: username and password
+authorization : level of policy/role.
+
+create user: devops-admin
+provvide : administrator
+
+
+create role called: ec2-member and give s3 access, assign the role to ec2 machine.
+
+what is the IAM user and power user and role ?
+
+types of access to users ?
+
+next ? how to create cross account IAM role ?
+
+
+ec2---linux , windows
+
+==============
+Day-10--Week-2
+==============
+lab:-
+launch ec2--windows as bastion
+launche--ec2--linux--webserver
+
+
+------>bastion--->3389--0.0.0.0/0----bastion-sg
+------>webserver-->22---bastion-sg 
+bastion---gitbash or putty----
+
+
+s3----simple storage service
+-->bucket (objects--files or directories)
+-->bucket level policy
+-->s3 cross region
+-->bucket level security and encryption
+-->Versioning
+-->command line access to s3 service
+-->s3 as a static website hosting
+-->Cloudfront (CDN)
+
+s3 bucket can be public or private.
+s3 is a regional service and can be accessed from anywhere.
+
+
+IAM role--->ec2-member---->full s3------>ec2 machine
+
+s3 --storage types in s3.
+standard
+infreequent
+glacier
+
+white listing ?
+Apache--http server/web server--80-----------ec2---OS
+static content 
+
+s3
+
+how do enable the bucket level policy ?
+how do you enable lifecycle, versioning, cross region and other account access ?
+make bucket as a static hosting ?
+what is s3 ?
+
+lab: Hosting a Static Website on Amazon S3
+
+https://www.free-css.com/free-css-templates/page233/innova
+
+
+Route--53---hosted zone---record set---www.awsmiddleware.in------------s3 endpoint
+
+
+
+http://awsmiddleware-admin.s3-website-us-east-1.amazonaws.com/s3.wrf
+http://awsmiddleware-admin.s3-website-us-east-1.amazonaws.com/web.msi
+
+
+lab:--github--devops--url-lab:
+http://awsmiddleware-admin.s3-website-us-east-1.amazonaws.com
+http://webserverpublicip
+
+
+linux-bastion--webserver
+windows-bastion-webserver
+
+
+==============
+Day-11--Week-2
+==============
+linux bastion -- webserver(linux),webservers
+windows bastion -- webserver(linux)
+load balancer lab
+
+AWS- Cloudfornt(s3 and load balancers) -- CDN ( akamai)---
+-->Edge
+-->Cache
+-->TTL
+
+static content purpose
+
+lab:
+security groups
+bastion-sg
+22--0.0.0.0/0
+web-sg
+22--bastion-sg
+80--alb-sg
+loadbalancer-sg
+80- 0.0.0.0/0
+sg-07e169d8060612bf6
+
+sg-0c417efc67f391f70
+
+root user:
+
+cd /var/www/html/
+echo "this is server2" >>index.html
+
+l
+
+==============
+Day-12--Week-3
+==============
+
+what is httpd ?
+what is http port number ? https port number ?
+what is yum ? how to install apache ? stop/start and check apache ?
+cloudfront for what purpose ?
+for auditing purpose ?
+what is damemon ?background process
+how to check service running or not ? ps -ef | grep -i "servicename"
+
+linux users/aws cli/
+
+
+cloudtrail
+cloudwatch
+ec2
+s3
+IAM
+Cloudfront
+ebs--block storage
+AMI
+
+lab:
+create a AMI from Console
+packer -- ami builder----
+ec2---apache---enable os level service(systemctl enable httpd)-----apache-image
+
+ec2----apache-image----
+
+
+redhat 7 --systemctl
+redhat 6  --service
+
+webserver--static content
+
+apache
+nginx
+
+how do install the webserver and how to stop and start ?
+how do you check running or not ?
+what is user data ?
+
+/var/lib/cloud/instances/[instance-id]/user-data.txt
+
+AMIs can be shared to other aws account. 
+Select the ami and -->modify image permissions and prvide aws account number.
+
+
+ami can be shared accross all the accounts
+custom ami
+user data
+
+i need first base ami
+
+#!/bin/bash
+yum update -y
+yum install httpd -y
+systemctl start httpd 
+systemctl enable httpd
+#download website
+wget http://download website
+cd /var/www/html/
+
+
+
+
+
+https://s3.amazonaws.com/awsmiddleware-admin/users.wrf
+
+
+
+
+
+==============
+Day-13-Week-3
+==============
+ssh --BruteForce attack--Guard and Config---ip address
+compromise--
+compliance requirement---security alert--jira ticket/email
+
+ssh -i pem ec2-user@public
+
+/var/log/secure
+/var/log/messages
+
+/var/log/httpd/access.log , error.log
+
+
+100---------------splunk/elk
+
+http/https
+sql injection/DoDs-Denial of service
+
+WAF
+
+chkconfig 3 5 httpd (or) systemctl enable httpd 
+Runlevels
+=======
+7
+init 0----shutdown
+init 1 --single user mode--no network(safe mode)
+init 2 --multi user mode -- no network
+init 3 --multi user mode + network
+init 4 --mulit user mode + network 
+init 5 -- multi user mode + network + GUI
+init 6 --reboot
+
+
+ulimit -Sa --warning
+ulimit -Ha --goes down
+
+
+network
+
+
+os--multi user login
+
+multi tasking(multi threaded)
+
+multi user---accounts
+multi user login --rdp licenses---license----Windows
+ssh --free
+
+i am unable to ssh ? how do you troubleshoot ?
+security group allow or not --22
+remote service(sshd ) may be down--reboot
+user issues(user name/password expire/account lock)
+password--chage -l username
+account--pam_tally2 
+ulimit reaches to max, (lsof)----resource not available
+
+redhat 7 -- systemd ---first process--process number will be zero
+redhat 6 -- init ----first process-- process number will be zero
+
+ps -ef | grep -i init
+
+sshd
+ntpd 
+crond -- scheduling
+smtpd---mail
+logrotate.d
+atd --scheduling
+httpd
+mysqld
+postgresqld
+mongod
+
+Windows Server 2003,2008,2010, 2016
+==============
+Day-14-Week-3
+==============
+linux basics,subnet,ip address, cidr,vpc(components).
+CIDR=Range of ip addresses in cloud. 
+subnet= range of ip address in cidr,its part of cidr.
+10.0.0.0/16=65k  or /24 /32
+cidr.xyz
+total ip address
+first address
+end ip address
+subnet mask
+
+As per aws recomendation if any component getting created in one az , it has to be created in all az's in 
+same region for high availiability.
+
+how do you make sure your services high available in aws ?
+create az services in all azs in aws.
+
+cross zone s3 replication.
+
+DR
+
+VPC
+cidr
+subnets
+igw
+natgw--elastic ip
+
+how do you access the internet in private subnet ? 
+
+how do you upgrade patches/packages in private subnet ?
+IGW=to get internet access from pubic subnet , we need this component in vpc
+NATGW= to get internet access from private subnet , we need this component in vpc.
+routes= to attach igw with public subnet and nat-gw with private subnet.
+
+internet---igw----route---public subnet
+intranet---nat-gw--route---private subnet
+
+steps
+create vpc and assign cidr range.
+create subnets in vpc and assign each subnet with sub section of cidr range of vpc.
+create igw and attach to vpc.
+create nat-gw.
+create routes for internetgateway and associate with public subnet.
+create route for nat-gw and associate with private subnet.
+-->Cross checl all once 
+launch ec2 machine and select your own vpc and your own subnet in ec2 dashboard section.
+
+
+
+vpc peering 
+
+can you tell me your environment and how did you made automation on it ?
+
+================
+Day-15-Week-3
+================
+aws cli , and vpc
+what is it ? cli tool to interact with aws infra.
+why we use ? to automate manual tasks with cloudformation or with scripts.
+what are tools required ? only aws cli software
+how do you install the aws cli ?
+download the pkg and install it.
+
+
+https://s3.amazonaws.com/aws-cli/AWSCLI64PY3.msi
+
+
+
+After running aws configure-->a.k and s.k, region name
+it creates in your user home directory .aws/credentials and config.
+
+https://aws.amazon.com/cloudformation/
+
+Resource==service
+stack/template=Group of resources creating from CFN.
+
+Cloudformation:-
+
+AWSTemplateFormatVersion" : "2010-09-09",
+Description: 
+Parameters:
+name: 
+type:
+
+Mappings:
+Resources:
+
+Cloudformation
+Terraform
+
+
+aws cloudformation create-stack --stack-name myteststack --template-body file://sampletemplate.json --parameters ParameterKey=KeyPairName,ParameterValue=TestKey ParameterKey=SubnetIDs,ParameterValue=SubnetID1\\,SubnetID2
+
+
+
+
+
+
+
+
+https://s3.amazonaws.com/awsmiddleware-admin/Day_14_vpc.wrf
+
+
+
+
+================
+Day-15-Week-3
+================
+aws cli , and vpc
+what is it ? cli tool to interact with aws infra.
+why we use ? to automate manual tasks with cloudformation or with scripts.
+what are tools required ? only aws cli software
+how do you install the aws cli ?
+download the pkg and install it.
+
+
+https://s3.amazonaws.com/aws-cli/AWSCLI64PY3.msi
+
+
+
+After running aws configure-->a.k and s.k, region name
+it creates in your user home directory .aws/credentials and config.
+
+https://aws.amazon.com/cloudformation/
+
+Resource==service
+stack/template=Group of resources creating from CFN.
+
+Cloudformation:-
+
+AWSTemplateFormatVersion" : "2010-09-09",
+Description: 
+Parameters:
+name: 
+type:
+
+Mappings:
+Resources:
+
+Cloudformation
+Terraform
+
+
+aws cloudformation create-stack --stack-name myteststack --template-body file://sampletemplate.json --parameters ParameterKey=KeyPairName,ParameterValue=TestKey ParameterKey=SubnetIDs,ParameterValue=SubnetID1\\,SubnetID2
+
+================
+Day-16-Week-3
+================
+Provisioners=packages 
+Provider=AWS
+
+what is packer ?
+Terraform , diff b/w terraform and cfn ?
+80 service , ---->page cant be displayed ?
+
+redhat 6 = iptables == service iptables status/stop/start/restart
+redhat 7 = firewalld = systemctl stop/start/status/restart/ firewalld
+
+yum install firewalld -y
+
+
+https://gist.github.com/naveen-vijay/a6e63e2704383aa05ffa
+
+
+aws cloudformation create-stack --stack-name security-sg --template-body file://security_group.json --parameters ParameterKey=Name,ParameterValue=testing ParameterKey=Description,ParameterValue=test ParameterKey=VPC,ParameterValue=vpc-4f1cce35
+
+NACL=Subnet(group of ec2 machines)
+sg= only to ec2
+
+nacl will have ctrl to inbound and outbound flow.
+sg only inbound
+nacl will have deny rules
+
+lab: nat-gw lab
+ping has to work in private subnet ec2 machine.
+Remove the route to nat gateway and you have failure
+Now solve the issue to work ping pakcets.
+
+https://s3.amazonaws.com/awsmiddleware-admin/vpc.wrf
+https://s3.amazonaws.com/awsmiddleware-admin/cfn.wrf
+
+
+
+
+AWS Deployment models
+blue/green deployment
+blue=live=1.0----green
+green=latest=2.0---live--blue
+
+devops deployment models
+b/g
+canary
+ec2 --security group--firewall
+0.0.0.0
+LAB:
+create two ec2 machines
+make one as bastion
+another one as application
+
+create two security groups
+name: bastion-sg and application-sg
+bastion-sg
+ssh-22-0.0.0.0
+application-sg
+ssh--22--bastion-sg
+
+first connect to the bastion
+ssh -i devops.pem ec2-user@18.206.154.64
+
+ssh clients: putty , gitbash and mobxterm
+to copy from local to remote server
+filezilla--gui
+winscp--gui
+scp
+
+
+scp -i devops.pem devops.pem  ec2-user@18.206.154.64:/home/ec2-user/
+
+remote port open or not 
+
+
+
+s3 is simple storage service==google drive==object storage
+its unlimited
+
+buckets--->5TB
+standard----default--immidiately
+infreequent--minuites
+glacier--archive data----hours time
+
+s3 life cycle management
+
+
+telnet ip/name port
+nc (netcat)
+nc -v ip port
+connection failed to application ec2 machine
+success for bastion ec2 machine
+ping
+connection timeout(ssh -22)
+Cloudtrail
+
+0.0.0.0--sg---notification--cloudtrail-------------lamda functions-----email--us---redsignal
+
+==================
+Day-8--Week-2
+=================
+bastion- done-security group -- 0.0.0.0/0 ---22--ssh---pem: bastion
+web: security group --- 22--ssh -- bastion-sg
+vpn--
+lab: assign a elastic ip to ec2 machine and deassociate.
+
+
+
+[ec2-user@ip-172-31-90-96 ~]$ whoami
+ec2-user
+[ec2-user@ip-172-31-90-96 ~]$
+
+
+[user@hostname]$
+[root@hostname]#
+
+
+gangi
+
+typing commands---shell(bash/ksh/csh/zsh)----kernel---hardware
+kernel==high level language to low level 
+english to machine level understand language.
+
+bash = shell and checks your commands synatax and semantic.
+lab:-
+Changing the hostname of ec2 machine.
+/etc/hostname
+/etc/hosts
+
+
+users: Administrator(root) and normal user(ec2-user)
+
+/home/<username>
+/home/ec2-user
+
+
+Normal uuser------->root
+su - root
+su 
+su -
+---------------------------->need password of root user.
+su - otheruser
+
+--------->other user password
+============================================
+ec2-user-------------->sudoers
+
+vi /etc/hostname -----------
+modes: readonly(escape) /insert /execution 
+
+after entering into insert mode --enter your cotnent---to save
+esc + shift + ; ---wq!
+w=write/save
+q=quit
+!=forceful come out of vi
+
+/etc/hosts
+
+privateip bastion
+
+hostname -F /etc/hostname
+
+
+bastion--
+webserver
+Loginto the webserver
+yum install httpd -y -----------instal httpd/apache webserver--80--
+systemctl start httpd -----------start httpd/apache
+
+
+bastion-webserver
+[root@webserver ec2-user]#
+[root@webserver ec2-user]# systemctl start httpd
+[root@webserver ec2-user]# ps -ef | grep httpd
+
+protocal://ip:port/
+
+
+http://54.89.102.180/------------------web-sg--(80)-----ec2---80---apache
+
+
+
+
+tell your webserver ip--
+
+what is ssh and telent ?
+diff
+
+==============
+Day-9--Week-2
+==============
+lab:-
+bastion-webserver(apache/httpd)
+changing the hostname
+assigning EIP
+
+
+to play the videos of our recording--install the web.exe( upload in sometime to webserver).
+
+
+IAM basics
+Need of IAM
+-->creating the users in IAM
+-->Roles 
+-->Assigning the roles to aws services--ec2
+-->basics of linux
+
+
+next?
+
+Select the security group as myip--tell me the ip address ?
+
+
+Cloudtrail=all the aws console clicks and activities will be saved into cloudtrail(auditing).
+
+
+Poweruser--Root user of AWS console--has access to all the services.
+--->all the people not use all services.
+
+
+users will be used by us.
+
+roles will be used by aws services.
+
+https://644308608816.signin.aws.amazon.com/console
+
+
+AWS console--username and password---MFA.
+----->policy--json format.
+         set of instructions(permissions) and actions.
+default policy(aws gave default) and custom policy(we need to create--policy generator).
+
+lab:create devmember1 and assign ec2read only .
+login with that user.
+
+create the group -- testing and assign cloudwatchfull access policy.
+
+ARN: amazon resource name.
+
+authentication: username and password
+authorization : level of policy/role.
+
+create user: devops-admin
+provvide : administrator
+
+
+create role called: ec2-member and give s3 access, assign the role to ec2 machine.
+
+what is the IAM user and power user and role ?
+
+types of access to users ?
+
+next ? how to create cross account IAM role ?
+
+
+ec2---linux , windows
+
+==============
+Day-10--Week-2
+==============
+lab:-
+launch ec2--windows as bastion
+launche--ec2--linux--webserver
+
+
+------>bastion--->3389--0.0.0.0/0----bastion-sg
+------>webserver-->22---bastion-sg 
+bastion---gitbash or putty----
+
+
+s3----simple storage service
+-->bucket (objects--files or directories)
+-->bucket level policy
+-->s3 cross region
+-->bucket level security and encryption
+-->Versioning
+-->command line access to s3 service
+-->s3 as a static website hosting
+-->Cloudfront (CDN)
+
+s3 bucket can be public or private.
+s3 is a regional service and can be accessed from anywhere.
+
+
+IAM role--->ec2-member---->full s3------>ec2 machine
+
+s3 --storage types in s3.
+standard
+infreequent
+glacier
+
+white listing ?
+Apache--http server/web server--80-----------ec2---OS
+static content 
+
+s3
+
+how do enable the bucket level policy ?
+how do you enable lifecycle, versioning, cross region and other account access ?
+make bucket as a static hosting ?
+what is s3 ?
+
+lab: Hosting a Static Website on Amazon S3
+
+https://www.free-css.com/free-css-templates/page233/innova
+
+
+Route--53---hosted zone---record set---www.awsmiddleware.in------------s3 endpoint
+
+
+
+http://awsmiddleware-admin.s3-website-us-east-1.amazonaws.com/s3.wrf
+http://awsmiddleware-admin.s3-website-us-east-1.amazonaws.com/web.msi
+
+
+lab:--github--devops--url-lab:
+http://awsmiddleware-admin.s3-website-us-east-1.amazonaws.com
+http://webserverpublicip
+
+
+linux-bastion--webserver
+windows-bastion-webserver
+
+
+==============
+Day-11--Week-2
+==============
+linux bastion -- webserver(linux),webservers
+windows bastion -- webserver(linux)
+load balancer lab
+
+AWS- Cloudfornt(s3 and load balancers) -- CDN ( akamai)---
+-->Edge
+-->Cache
+-->TTL
+
+static content purpose
+
+lab:
+security groups
+bastion-sg
+22--0.0.0.0/0
+web-sg
+22--bastion-sg
+80--alb-sg
+loadbalancer-sg
+80- 0.0.0.0/0
+sg-07e169d8060612bf6
+
+sg-0c417efc67f391f70
+
+root user:
+
+cd /var/www/html/
+echo "this is server2" >>index.html
+
+l
+
+==============
+Day-12--Week-3
+==============
+
+what is httpd ?
+what is http port number ? https port number ?
+what is yum ? how to install apache ? stop/start and check apache ?
+cloudfront for what purpose ?
+for auditing purpose ?
+what is damemon ?background process
+how to check service running or not ? ps -ef | grep -i "servicename"
+
+linux users/aws cli/
+
+
+cloudtrail
+cloudwatch
+ec2
+s3
+IAM
+Cloudfront
+ebs--block storage
+AMI
+
+lab:
+create a AMI from Console
+packer -- ami builder----
+ec2---apache---enable os level service(systemctl enable httpd)-----apache-image
+
+ec2----apache-image----
+
+
+redhat 7 --systemctl
+redhat 6  --service
+
+webserver--static content
+
+apache
+nginx
+
+how do install the webserver and how to stop and start ?
+how do you check running or not ?
+what is user data ?
+
+/var/lib/cloud/instances/[instance-id]/user-data.txt
+
+AMIs can be shared to other aws account. 
+Select the ami and -->modify image permissions and prvide aws account number.
+
+
+ami can be shared accross all the accounts
+custom ami
+user data
+
+i need first base ami
+
+#!/bin/bash
+yum update -y
+yum install httpd -y
+systemctl start httpd 
+systemctl enable httpd
+#download website
+wget http://download website
+cd /var/www/html/
+
+
+
+==============
+Day-13-Week-3
+==============
+ssh --BruteForce attack--Guard and Config---ip address
+compromise--
+compliance requirement---security alert--jira ticket/email
+
+ssh -i pem ec2-user@public
+
+/var/log/secure
+/var/log/messages
+
+/var/log/httpd/access.log , error.log
+
+
+100---------------splunk/elk
+
+http/https
+sql injection/DoDs-Denial of service
+
+WAF
+
+chkconfig 3 5 httpd (or) systemctl enable httpd 
+Runlevels
+=======
+7
+init 0----shutdown
+init 1 --single user mode--no network(safe mode)
+init 2 --multi user mode -- no network
+init 3 --multi user mode + network
+init 4 --mulit user mode + network 
+init 5 -- multi user mode + network + GUI
+init 6 --reboot
+
+
+ulimit -Sa --warning
+ulimit -Ha --goes down
+
+
+network
+
+
+os--multi user login
+
+multi tasking(multi threaded)
+
+multi user---accounts
+multi user login --rdp licenses---license----Windows
+ssh --free
+
+i am unable to ssh ? how do you troubleshoot ?
+security group allow or not --22
+remote service(sshd ) may be down--reboot
+user issues(user name/password expire/account lock)
+password--chage -l username
+account--pam_tally2 
+ulimit reaches to max, (lsof)----resource not available
+
+redhat 7 -- systemd ---first process--process number will be zero
+redhat 6 -- init ----first process-- process number will be zero
+
+ps -ef | grep -i init
+
+sshd
+ntpd 
+crond -- scheduling
+smtpd---mail
+logrotate.d
+atd --scheduling
+httpd
+mysqld
+postgresqld
+mongod
+
+Windows Server 2003,2008,2010, 2016
+==============
+Day-14-Week-3
+==============
+linux basics,subnet,ip address, cidr,vpc(components).
+CIDR=Range of ip addresses in cloud. 
+subnet= range of ip address in cidr,its part of cidr.
+10.0.0.0/16=65k  or /24 /32
+cidr.xyz
+total ip address
+first address
+end ip address
+subnet mask
+
+As per aws recomendation if any component getting created in one az , it has to be created in all az's in 
+same region for high availiability.
+
+how do you make sure your services high available in aws ?
+create az services in all azs in aws.
+
+cross zone s3 replication.
+
+DR
+
+VPC
+cidr
+subnets
+igw
+natgw--elastic ip
+
+how do you access the internet in private subnet ? 
+
+how do you upgrade patches/packages in private subnet ?
+IGW=to get internet access from pubic subnet , we need this component in vpc
+NATGW= to get internet access from private subnet , we need this component in vpc.
+routes= to attach igw with public subnet and nat-gw with private subnet.
+
+internet---igw----route---public subnet
+intranet---nat-gw--route---private subnet
+
+steps
+create vpc and assign cidr range.
+create subnets in vpc and assign each subnet with sub section of cidr range of vpc.
+create igw and attach to vpc.
+create nat-gw.
+create routes for internetgateway and associate with public subnet.
+for all pub subnets=one route
+for each private sub=one route
+
+
+create route for nat-gw and associate with private subnet.
+-->Cross checl all once 
+launch ec2 machine and select your own vpc and your own subnet in ec2 dashboard section.
+
+
+
+vpc peering 
+
+can you tell me your environment and how did you made automation on it ?
+
+================
+Day-15-Week-3
+================
+aws cli , and vpc
+what is it ? cli tool to interact with aws infra.
+why we use ? to automate manual tasks with cloudformation or with scripts.
+what are tools required ? only aws cli software
+how do you install the aws cli ?
+download the pkg and install it.
+
+
+https://s3.amazonaws.com/aws-cli/AWSCLI64PY3.msi
+
+
+
+After running aws configure-->a.k and s.k, region name
+it creates in your user home directory .aws/credentials and config.
+
+https://aws.amazon.com/cloudformation/
+
+Resource==service
+stack/template=Group of resources creating from CFN.
+
+Cloudformation:-
+
+AWSTemplateFormatVersion" : "2010-09-09",
+Description: 
+Parameters:
+name: 
+type:
+
+Mappings:
+Resources:
+
+Cloudformation
+Terraform
+
+
+aws cloudformation create-stack --stack-name myteststack --template-body file://sampletemplate.json --parameters ParameterKey=KeyPairName,ParameterValue=TestKey ParameterKey=SubnetIDs,ParameterValue=SubnetID1\\,SubnetID2
+
+================
+Day-16-Week-3
+================
+Provisioners=packages 
+Provider=AWS
+
+what is packer ?
+Terraform , diff b/w terraform and cfn ?
+80 service , ---->page cant be displayed ?
+
+redhat 6 = iptables == service iptables status/stop/start/restart
+redhat 7 = firewalld = systemctl stop/start/status/restart/ firewalld
+
+yum install firewalld -y
+
+
+https://gist.github.com/naveen-vijay/a6e63e2704383aa05ffa
+
+
+aws cloudformation create-stack --stack-name security-sg --template-body file://security_group.json --parameters ParameterKey=Name,ParameterValue=testing ParameterKey=Description,ParameterValue=test ParameterKey=VPC,ParameterValue=vpc-4f1cce35
+
+NACL=Subnet(group of ec2 machines)
+sg= only to ec2
+
+nacl will have ctrl to inbound and outbound flow.
+sg only inbound
+nacl will have deny rules
+
+lab: nat-gw lab
+ping has to work in private subnet ec2 machine.
+Remove the route to nat gateway and you have failure
+Now solve the issue to work ping pakcets.
+
+
+================
+Day-17-Week-4
+================
+CFN Template vpc
+Parameters
+vpcname
+cidr block
+subnets(public,private) and their cidr blocks
+
+Resources:
+VPC
+Intergateway
+Internetgatewayattachment
+Subnets(pub,private)
+NatGw
+Routes
+
+
+egress/ingress and purpose of NACL rules
+https://docs.aws.amazon.com/codebuild/latest/userguide/cloudformation-vpc-template.html
+
+
+
+Terraform
+https://www.terraform.io/downloads.html
+
+Terraform
+
+Provider
+Provisioners
+modules
+
+
+
+Generating the ssh-keys
+puttygen
+ssh-keygen
+
+pem=private keygen
+
+
+ssh-keygen
+it generates id_rsa(private) and id_rsa.pub ( public)
+in your user home directory .ssh/
+
+
+
+================
+Day-18-Week-4
+================
+cloud models
+PaaS  -- Build and Deploy --elastic beans stalk
+IaaS------------admin---
+SaaS--SalesForce ,
+appDynamics, newrelic--monitoring tools-- APM
+
+
+.net-----------IIS
+java------tomcat , webshere, weblogic 
+php ---- apache and nginx (LAMP and WAMP)
+static code----apache and nginx , IIS
+reactJs
+AngularJs
+Node
+
+SAP ABAP ---- SAP Basis
+
+100 pages--5 dev team 
+
+Development
+=====================================
+developers----editors--Eclipse--coding----------------save at one locatin total code== source code management(SCM)
+Gitlab or Github or SVN or CVS , perforce, TFS
+
+Build (ANT , Maven, Graddle)
+=====================================
+
+pgm(source code)----compile-----execute---pack(.exe/.msi/.zip/.tar/.tgz/.bin/.war/.ear/.jar/.dll)
+
+.exe or .msi(number of executable files)===pack/archive/artifact/repo/software
+
+
+Deploy 
+========================================
+Chef, Puppet , Ansible , Shell scripting , Udeploy , Rundeck, Salt stack, Code Deploy
+
+
+Testing
+===================================
+Seleinus, Junit , Functinal Testing
+
+
+environments
+=============
+Devlopement--testing team and development team --------create a ticket ---jira tiket--
+QAL ---testing team ----create a tiket--jira--dev team 
+Performance --load test team (jmeter and load runner)---create a ticket and assign to dev ops team 
+Production (end users)----help desk -----create ticket --SNOW/Remedy---team ---middleware team/operations team ---jira ticket--dev
+
+jira tool --ticketing -- devlopment 
+
+
+ticketing tool = SerivceNow(SNOW) and BMC remedy
+
+what are the ticketing tools u use ?
+jira= to work development and enhancement request(CR), to work on bugs
+SNOW and BMC remedy= To track production release and production issues
+
+Release ?
+deployment in production
+
+Before what you do ?
+Regularly
+
+Release == 1 month ==28 th date==Sprint cycle
+1st of every month =sprint meeting (dev team + testing + devops---)==plan of work will decided
+jira tickets will be assigned
+
+regularly check for jira tickets==scrum meeting or scrum call or standup meeting or Daily Huddle
+
+sprint + scrum + sprint review meeting(weekly)+ jira + story points =======>Agile soft ware deployment model
+
+
+jira= preprod deployments
+
+
+
+Produciton deployment == existing bugs fixes or enhancement request 
+
+devops = development + build + testing + deployment + relase + agile models
+
+Benefits
+=======
+fast development
+fast testing
+fast feedback
+rapid releases 
+
+AWS survey
+
+
+
+
+================
+Day-19-Week-4
+================
+
+
+
+arn:aws:s3:::staticwebsites-demo-s3
+
+
+index.html
+https://s3.amazonaws.com/staticwebsites-demo-s3/index.html
+
+http://staticwebsites-demo-s3.s3-website-us-east-1.amazonaws.com
+
+
+DNS
+awsmiddleware.in(znetlive)---NameServers(AWS)---Route53---awsmiddleware.in----s3 url-lab
+
+
+www.awsmiddleware.in -----domain provider---name servers---aws---route53--created zone---created record set---map with
+ip address 
+
+created a hosted Zone
+
+
+
+
+http status codes
+
+200--success
+404 -- FNF --- No such key
+403 -- No authorization or access denied
+304 -- Not modified
+30x -- redirection -- cookies/cache/webiste
+
+
+
+ns-47.awsdns-05.com.
+ns-1861.awsdns-40.co.uk.
+ns-1357.awsdns-41.org.
+ns-1010.awsdns-62.net.
+
+
+
+
+================
+Day-20-Week-4
+================
+Github --two flavours- open source and enterprise
+
+cli --git clients--gitbash
+
+interaction with github is GUI or CLI
+
+diff between git and github ?
+
+
+
+echo "# awsmiddleware" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/gangireddydanam/awsmiddleware.git
+git push -u origin master
+
+
+
+Command line instructions
+
+Git global setup
+git config --global user.name "Gangireddy Danam"
+git config --global user.email "gangireddydanam@gmail.com"
+
+Create a new repository
+git clone https://gitlab.com/gangireddydanam/awsmiddleware.git
+cd awsmiddleware
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+Existing folder
+cd existing_folder
+git init
+git remote add origin https://gitlab.com/gangireddydanam/awsmiddleware.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+Existing Git repository
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin https://gitlab.com/gangireddydanam/awsmiddleware.git
+git push -u origin --all
+git push -u origin --tags
+
+
+
+git has stages
+working- local
+staging - 
+local repo
+central repo == github
+
+
+console --outuput section 
+file 
+
+redirection (> or >>)
+
+git status
+branch is part of repo
+master
+
+
+================
+Day-21-Week-4
+================
+
+ubuntu = apt-get/apt /yum
+centos/redhat=yum
+
+pip 
+yum update -y 
+yum install git -y
+
+aws cli
+
+#!/bin/bash
+yum install unzip -y 
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+unzip awscli-bundle.zip
+sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+
+
+
+/
+/bin/--------all binaries--all normal user commands
+/home---------noraml users home directories
+/tmp----------temporary directory
+/sbin--------system binaries --- mostly will be used by root user or sudoer user 
+/usr--------like program files , all the default softwares will be instaled
+/var--------all the os level logs or os level services logs
+/opt-------optional packages
+/dev --------devices like hard discs
+/mnt---------temporary mount
+/boot -------os boot images
+/media -------pendrives or external hard disc
+/etc-----------os configuration files
+/root -----------root user home directory
+/proc ------- runtime information 
+
+
+
+without hyphen --- current user , current path and remote user current path
+
+with hyphen -- takes you to remote user home directory.
+
+
+
+cd 
+pwd
+rm filename
+rm -f filename
+unzip 
+curl
+wget
+chmod
+
+environment variables --- two types -- system defined(during os installation ) and user defined(user has to create)
+
+to check environment variables --set or env
+
+to set user defined variable command is export 
+/sbin:/bin:/usr/sbin:/usr/bin
+
+
+
+within the aws -- user IAM roles
+
+
+#!/bin/bash
+rm -rf /root/s3
+mkdir /root/s3/
+cd /root/s3
+git clone https://github.com/gangireddydanam/awsmiddleware.git
+cd /root/s3/awsmiddleware/
+/usr/local/bin/aws s3 cp index.html s3://dev-aws.awsmiddleware.in/
+
+dev_flow2.wrf
+
+
+AWS Deployment models
+blue/green deployment
+blue=live=1.0----green
+green=latest=2.0---live--blue
+
+devops deployment models
+b/g
+canary
+ec2 --security group--firewall
+0.0.0.0
+LAB:
+create two ec2 machines
+make one as bastion
+another one as application
+
+create two security groups
+name: bastion-sg and application-sg
+bastion-sg
+ssh-22-0.0.0.0
+application-sg
+ssh--22--bastion-sg
+
+first connect to the bastion
+ssh -i devops.pem ec2-user@18.206.154.64
+
+ssh clients: putty , gitbash and mobxterm
+to copy from local to remote server
+filezilla--gui
+winscp--gui
+scp
+
+
+scp -i devops.pem devops.pem  ec2-user@18.206.154.64:/home/ec2-user/
+
+remote port open or not 
+
+
+
+s3 is simple storage service==google drive==object storage
+its unlimited
+
+buckets--->5TB
+standard----default--immidiately
+infreequent--minuites
+glacier--archive data----hours time
+
+s3 life cycle management
+
+
+telnet ip/name port
+nc (netcat)
+nc -v ip port
+connection failed to application ec2 machine
+success for bastion ec2 machine
+ping
+connection timeout(ssh -22)
+Cloudtrail
+
+0.0.0.0--sg---notification--cloudtrail-------------lamda functions-----email--us---redsignal
+
+==================
+Day-8--Week-2
+=================
+bastion- done-security group -- 0.0.0.0/0 ---22--ssh---pem: bastion
+web: security group --- 22--ssh -- bastion-sg
+vpn--
+lab: assign a elastic ip to ec2 machine and deassociate.
+
+
+
+[ec2-user@ip-172-31-90-96 ~]$ whoami
+ec2-user
+[ec2-user@ip-172-31-90-96 ~]$
+
+
+[user@hostname]$
+[root@hostname]#
+
+
+gangi
+
+typing commands---shell(bash/ksh/csh/zsh)----kernel---hardware
+kernel==high level language to low level 
+english to machine level understand language.
+
+bash = shell and checks your commands synatax and semantic.
+lab:-
+Changing the hostname of ec2 machine.
+/etc/hostname
+/etc/hosts
+
+
+users: Administrator(root) and normal user(ec2-user)
+
+/home/<username>
+/home/ec2-user
+
+
+Normal uuser------->root
+su - root
+su 
+su -
+---------------------------->need password of root user.
+su - otheruser
+
+--------->other user password
+============================================
+ec2-user-------------->sudoers
+
+vi /etc/hostname -----------
+modes: readonly(escape) /insert /execution 
+
+after entering into insert mode --enter your cotnent---to save
+esc + shift + ; ---wq!
+w=write/save
+q=quit
+!=forceful come out of vi
+
+/etc/hosts
+
+privateip bastion
+
+hostname -F /etc/hostname
+
+
+bastion--
+webserver
+Loginto the webserver
+yum install httpd -y -----------instal httpd/apache webserver--80--
+systemctl start httpd -----------start httpd/apache
+
+
+bastion-webserver
+[root@webserver ec2-user]#
+[root@webserver ec2-user]# systemctl start httpd
+[root@webserver ec2-user]# ps -ef | grep httpd
+
+protocal://ip:port/
+
+
+http://54.89.102.180/------------------web-sg--(80)-----ec2---80---apache
+
+
+
+
+tell your webserver ip--
+
+what is ssh and telent ?
+diff
+
+==============
+Day-9--Week-2
+==============
+lab:-
+bastion-webserver(apache/httpd)
+changing the hostname
+assigning EIP
+
+
+to play the videos of our recording--install the web.exe( upload in sometime to webserver).
+
+
+IAM basics
+Need of IAM
+-->creating the users in IAM
+-->Roles 
+-->Assigning the roles to aws services--ec2
+-->basics of linux
+
+
+next?
+
+Select the security group as myip--tell me the ip address ?
+
+
+Cloudtrail=all the aws console clicks and activities will be saved into cloudtrail(auditing).
+
+
+Poweruser--Root user of AWS console--has access to all the services.
+--->all the people not use all services.
+
+
+users will be used by us.
+
+roles will be used by aws services.
+
+https://644308608816.signin.aws.amazon.com/console
+
+
+AWS console--username and password---MFA.
+----->policy--json format.
+         set of instructions(permissions) and actions.
+default policy(aws gave default) and custom policy(we need to create--policy generator).
+
+lab:create devmember1 and assign ec2read only .
+login with that user.
+
+create the group -- testing and assign cloudwatchfull access policy.
+
+ARN: amazon resource name.
+
+authentication: username and password
+authorization : level of policy/role.
+
+create user: devops-admin
+provvide : administrator
+
+
+create role called: ec2-member and give s3 access, assign the role to ec2 machine.
+
+what is the IAM user and power user and role ?
+
+types of access to users ?
+
+next ? how to create cross account IAM role ?
+
+
+ec2---linux , windows
+
+==============
+Day-10--Week-2
+==============
+lab:-
+launch ec2--windows as bastion
+launche--ec2--linux--webserver
+
+
+------>bastion--->3389--0.0.0.0/0----bastion-sg
+------>webserver-->22---bastion-sg 
+bastion---gitbash or putty----
+
+
+s3----simple storage service
+-->bucket (objects--files or directories)
+-->bucket level policy
+-->s3 cross region
+-->bucket level security and encryption
+-->Versioning
+-->command line access to s3 service
+-->s3 as a static website hosting
+-->Cloudfront (CDN)
+
+s3 bucket can be public or private.
+s3 is a regional service and can be accessed from anywhere.
+
+
+IAM role--->ec2-member---->full s3------>ec2 machine
+
+s3 --storage types in s3.
+standard
+infreequent
+glacier
+
+white listing ?
+Apache--http server/web server--80-----------ec2---OS
+static content 
+
+s3
+
+how do enable the bucket level policy ?
+how do you enable lifecycle, versioning, cross region and other account access ?
+make bucket as a static hosting ?
+what is s3 ?
+
+lab: Hosting a Static Website on Amazon S3
+
+https://www.free-css.com/free-css-templates/page233/innova
+
+
+Route--53---hosted zone---record set---www.awsmiddleware.in------------s3 endpoint
+
+
+
+http://awsmiddleware-admin.s3-website-us-east-1.amazonaws.com/s3.wrf
+http://awsmiddleware-admin.s3-website-us-east-1.amazonaws.com/web.msi
+
+
+lab:--github--devops--url-lab:
+http://awsmiddleware-admin.s3-website-us-east-1.amazonaws.com
+http://webserverpublicip
+
+
+linux-bastion--webserver
+windows-bastion-webserver
+
+
+==============
+Day-11--Week-2
+==============
+linux bastion -- webserver(linux),webservers
+windows bastion -- webserver(linux)
+load balancer lab
+
+AWS- Cloudfornt(s3 and load balancers) -- CDN ( akamai)---
+-->Edge
+-->Cache
+-->TTL
+
+static content purpose
+
+lab:
+security groups
+bastion-sg
+22--0.0.0.0/0
+web-sg
+22--bastion-sg
+80--alb-sg
+loadbalancer-sg
+80- 0.0.0.0/0
+sg-07e169d8060612bf6
+
+sg-0c417efc67f391f70
+
+root user:
+
+cd /var/www/html/
+echo "this is server2" >>index.html
+
+l
+
+==============
+Day-12--Week-3
+==============
+
+what is httpd ?
+what is http port number ? https port number ?
+what is yum ? how to install apache ? stop/start and check apache ?
+cloudfront for what purpose ?
+for auditing purpose ?
+what is damemon ?background process
+how to check service running or not ? ps -ef | grep -i "servicename"
+
+linux users/aws cli/
+
+
+cloudtrail
+cloudwatch
+ec2
+s3
+IAM
+Cloudfront
+ebs--block storage
+AMI
+
+lab:
+create a AMI from Console
+packer -- ami builder----
+ec2---apache---enable os level service(systemctl enable httpd)-----apache-image
+
+ec2----apache-image----
+
+
+redhat 7 --systemctl
+redhat 6  --service
+
+webserver--static content
+
+apache
+nginx
+
+how do install the webserver and how to stop and start ?
+how do you check running or not ?
+what is user data ?
+
+/var/lib/cloud/instances/[instance-id]/user-data.txt
+
+AMIs can be shared to other aws account. 
+Select the ami and -->modify image permissions and prvide aws account number.
+
+
+ami can be shared accross all the accounts
+custom ami
+user data
+
+i need first base ami
+
+#!/bin/bash
+yum update -y
+yum install httpd -y
+systemctl start httpd 
+systemctl enable httpd
+#download website
+wget http://download website
+cd /var/www/html/
+
+
+
+==============
+Day-13-Week-3
+==============
+ssh --BruteForce attack--Guard and Config---ip address
+compromise--
+compliance requirement---security alert--jira ticket/email
+
+ssh -i pem ec2-user@public
+
+/var/log/secure
+/var/log/messages
+
+/var/log/httpd/access.log , error.log
+
+
+100---------------splunk/elk
+
+http/https
+sql injection/DoDs-Denial of service
+
+WAF
+
+chkconfig 3 5 httpd (or) systemctl enable httpd 
+Runlevels
+=======
+7
+init 0----shutdown
+init 1 --single user mode--no network(safe mode)
+init 2 --multi user mode -- no network
+init 3 --multi user mode + network
+init 4 --mulit user mode + network 
+init 5 -- multi user mode + network + GUI
+init 6 --reboot
+
+
+ulimit -Sa --warning
+ulimit -Ha --goes down
+
+
+network
+
+
+os--multi user login
+
+multi tasking(multi threaded)
+
+multi user---accounts
+multi user login --rdp licenses---license----Windows
+ssh --free
+
+i am unable to ssh ? how do you troubleshoot ?
+security group allow or not --22
+remote service(sshd ) may be down--reboot
+user issues(user name/password expire/account lock)
+password--chage -l username
+account--pam_tally2 
+ulimit reaches to max, (lsof)----resource not available
+
+redhat 7 -- systemd ---first process--process number will be zero
+redhat 6 -- init ----first process-- process number will be zero
+
+ps -ef | grep -i init
+
+sshd
+ntpd 
+crond -- scheduling
+smtpd---mail
+logrotate.d
+atd --scheduling
+httpd
+mysqld
+postgresqld
+mongod
+
+Windows Server 2003,2008,2010, 2016
+==============
+Day-14-Week-3
+==============
+linux basics,subnet,ip address, cidr,vpc(components).
+CIDR=Range of ip addresses in cloud. 
+subnet= range of ip address in cidr,its part of cidr.
+10.0.0.0/16=65k  or /24 /32
+cidr.xyz
+total ip address
+first address
+end ip address
+subnet mask
+
+As per aws recomendation if any component getting created in one az , it has to be created in all az's in 
+same region for high availiability.
+
+how do you make sure your services high available in aws ?
+create az services in all azs in aws.
+
+cross zone s3 replication.
+
+DR
+
+VPC
+cidr
+subnets
+igw
+natgw--elastic ip
+
+how do you access the internet in private subnet ? 
+
+how do you upgrade patches/packages in private subnet ?
+IGW=to get internet access from pubic subnet , we need this component in vpc
+NATGW= to get internet access from private subnet , we need this component in vpc.
+routes= to attach igw with public subnet and nat-gw with private subnet.
+
+internet---igw----route---public subnet
+intranet---nat-gw--route---private subnet
+
+steps
+create vpc and assign cidr range.
+create subnets in vpc and assign each subnet with sub section of cidr range of vpc.
+create igw and attach to vpc.
+create nat-gw.
+create routes for internetgateway and associate with public subnet.
+for all pub subnets=one route
+for each private sub=one route
+
+
+create route for nat-gw and associate with private subnet.
+-->Cross checl all once 
+launch ec2 machine and select your own vpc and your own subnet in ec2 dashboard section.
+
+
+
+vpc peering 
+
+can you tell me your environment and how did you made automation on it ?
+
+================
+Day-15-Week-3
+================
+aws cli , and vpc
+what is it ? cli tool to interact with aws infra.
+why we use ? to automate manual tasks with cloudformation or with scripts.
+what are tools required ? only aws cli software
+how do you install the aws cli ?
+download the pkg and install it.
+
+
+https://s3.amazonaws.com/aws-cli/AWSCLI64PY3.msi
+
+
+
+After running aws configure-->a.k and s.k, region name
+it creates in your user home directory .aws/credentials and config.
+
+https://aws.amazon.com/cloudformation/
+
+Resource==service
+stack/template=Group of resources creating from CFN.
+
+Cloudformation:-
+
+AWSTemplateFormatVersion" : "2010-09-09",
+Description: 
+Parameters:
+name: 
+type:
+
+Mappings:
+Resources:
+
+Cloudformation
+Terraform
+
+
+aws cloudformation create-stack --stack-name myteststack --template-body file://sampletemplate.json --parameters ParameterKey=KeyPairName,ParameterValue=TestKey ParameterKey=SubnetIDs,ParameterValue=SubnetID1\\,SubnetID2
+
+================
+Day-16-Week-3
+================
+Provisioners=packages 
+Provider=AWS
+
+what is packer ?
+Terraform , diff b/w terraform and cfn ?
+80 service , ---->page cant be displayed ?
+
+redhat 6 = iptables == service iptables status/stop/start/restart
+redhat 7 = firewalld = systemctl stop/start/status/restart/ firewalld
+
+yum install firewalld -y
+
+
+https://gist.github.com/naveen-vijay/a6e63e2704383aa05ffa
+
+
+aws cloudformation create-stack --stack-name security-sg --template-body file://security_group.json --parameters ParameterKey=Name,ParameterValue=testing ParameterKey=Description,ParameterValue=test ParameterKey=VPC,ParameterValue=vpc-4f1cce35
+
+NACL=Subnet(group of ec2 machines)
+sg= only to ec2
+
+nacl will have ctrl to inbound and outbound flow.
+sg only inbound
+nacl will have deny rules
+
+lab: nat-gw lab
+ping has to work in private subnet ec2 machine.
+Remove the route to nat gateway and you have failure
+Now solve the issue to work ping pakcets.
+
+
+================
+Day-17-Week-4
+================
+CFN Template vpc
+Parameters
+vpcname
+cidr block
+subnets(public,private) and their cidr blocks
+
+Resources:
+VPC
+Intergateway
+Internetgatewayattachment
+Subnets(pub,private)
+NatGw
+Routes
+
+
+egress/ingress and purpose of NACL rules
+https://docs.aws.amazon.com/codebuild/latest/userguide/cloudformation-vpc-template.html
+
+
+
+Terraform
+https://www.terraform.io/downloads.html
+
+Terraform
+
+Provider
+Provisioners
+modules
+
+
+
+Generating the ssh-keys
+puttygen
+ssh-keygen
+
+pem=private keygen
+
+
+ssh-keygen
+it generates id_rsa(private) and id_rsa.pub ( public)
+in your user home directory .ssh/
+
+
+
+================
+Day-18-Week-4
+================
+cloud models
+PaaS  -- Build and Deploy --elastic beans stalk
+IaaS------------admin---
+SaaS--SalesForce ,
+appDynamics, newrelic--monitoring tools-- APM
+
+
+.net-----------IIS
+java------tomcat , webshere, weblogic 
+php ---- apache and nginx (LAMP and WAMP)
+static code----apache and nginx , IIS
+reactJs
+AngularJs
+Node
+
+SAP ABAP ---- SAP Basis
+
+100 pages--5 dev team 
+
+Development
+=====================================
+developers----editors--Eclipse--coding----------------save at one locatin total code== source code management(SCM)
+Gitlab or Github or SVN or CVS , perforce, TFS
+
+Build (ANT , Maven, Graddle)
+=====================================
+
+pgm(source code)----compile-----execute---pack(.exe/.msi/.zip/.tar/.tgz/.bin/.war/.ear/.jar/.dll)
+
+.exe or .msi(number of executable files)===pack/archive/artifact/repo/software
+
+
+Deploy 
+========================================
+Chef, Puppet , Ansible , Shell scripting , Udeploy , Rundeck, Salt stack, Code Deploy
+
+
+Testing
+===================================
+Seleinus, Junit , Functinal Testing
+
+
+environments
+=============
+Devlopement--testing team and development team --------create a ticket ---jira tiket--
+QAL ---testing team ----create a tiket--jira--dev team 
+Performance --load test team (jmeter and load runner)---create a ticket and assign to dev ops team 
+Production (end users)----help desk -----create ticket --SNOW/Remedy---team ---middleware team/operations team ---jira ticket--dev
+
+jira tool --ticketing -- devlopment 
+
+
+ticketing tool = SerivceNow(SNOW) and BMC remedy
+
+what are the ticketing tools u use ?
+jira= to work development and enhancement request(CR), to work on bugs
+SNOW and BMC remedy= To track production release and production issues
+
+Release ?
+deployment in production
+
+Before what you do ?
+Regularly
+
+Release == 1 month ==28 th date==Sprint cycle
+1st of every month =sprint meeting (dev team + testing + devops---)==plan of work will decided
+jira tickets will be assigned
+
+regularly check for jira tickets==scrum meeting or scrum call or standup meeting or Daily Huddle
+
+sprint + scrum + sprint review meeting(weekly)+ jira + story points =======>Agile soft ware deployment model
+
+
+jira= preprod deployments
+
+
+
+Produciton deployment == existing bugs fixes or enhancement request 
+
+devops = development + build + testing + deployment + relase + agile models
+
+Benefits
+=======
+fast development
+fast testing
+fast feedback
+rapid releases 
+
+AWS survey
+
+
+
+
+================
+Day-19-Week-4
+================
+
+
+
+arn:aws:s3:::staticwebsites-demo-s3
+
+
+index.html
+https://s3.amazonaws.com/staticwebsites-demo-s3/index.html
+
+http://staticwebsites-demo-s3.s3-website-us-east-1.amazonaws.com
+
+
+DNS
+awsmiddleware.in(znetlive)---NameServers(AWS)---Route53---awsmiddleware.in----s3 url-lab
+
+
+www.awsmiddleware.in -----domain provider---name servers---aws---route53--created zone---created record set---map with
+ip address 
+
+created a hosted Zone
+
+
+
+
+http status codes
+
+200--success
+404 -- FNF --- No such key
+403 -- No authorization or access denied
+304 -- Not modified
+30x -- redirection -- cookies/cache/webiste
+
+
+
+ns-47.awsdns-05.com.
+ns-1861.awsdns-40.co.uk.
+ns-1357.awsdns-41.org.
+ns-1010.awsdns-62.net.
+
+
+
+
+================
+Day-20-Week-4
+================
+Github --two flavours- open source and enterprise
+
+cli --git clients--gitbash
+
+interaction with github is GUI or CLI
+
+diff between git and github ?
+
+
+
+echo "# awsmiddleware" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/gangireddydanam/awsmiddleware.git
+git push -u origin master
+
+
+
+Command line instructions
+
+Git global setup
+git config --global user.name "Gangireddy Danam"
+git config --global user.email "gangireddydanam@gmail.com"
+
+Create a new repository
+git clone https://github.com/gangireddydanam/awsmiddleware.git
+cd awsmiddleware
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+Existing folder
+cd existing_folder
+git init
+git remote add origin https://gitlab.com/gangireddydanam/awsmiddleware.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+Existing Git repository
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin https://gitlab.com/gangireddydanam/awsmiddleware.git
+git push -u origin --all
+git push -u origin --tags
+
+
+
+git has stages
+working- local
+staging - 
+local repo
+central repo == github
+
+
+console --outuput section 
+file 
+
+redirection (> or >>)
+
+git status
+branch is part of repo
+master
+
+
+================
+Day-21-Week-4
+================
+
+ubuntu = apt-get/apt /yum
+centos/redhat=yum
+
+pip 
+yum update -y 
+yum install git -y
+
+aws cli
+
+#!/bin/bash
+yum install unzip -y 
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+unzip awscli-bundle.zip
+sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+
+
+
+/
+/bin/--------all binaries--all normal user commands
+/home---------noraml users home directories
+/tmp----------temporary directory
+/sbin--------system binaries --- mostly will be used by root user or sudoer user 
+/usr--------like program files , all the default softwares will be instaled
+/var--------all the os level logs or os level services logs
+/opt-------optional packages
+/dev --------devices like hard discs
+/mnt---------temporary mount
+/boot -------os boot images
+/media -------pendrives or external hard disc
+/etc-----------os configuration files
+/root -----------root user home directory
+/proc ------- runtime information 
+
+
+
+without hyphen --- current user , current path and remote user current path
+
+with hyphen -- takes you to remote user home directory.
+
+
+
+cd 
+pwd
+rm filename
+rm -f filename
+unzip 
+curl
+wget
+chmod
+
+environment variables --- two types -- system defined(during os installation ) and user defined(user has to create)
+
+to check environment variables --set or env
+
+to set user defined variable command is export 
+/sbin:/bin:/usr/sbin:/usr/bin
+
+
+
+within the aws -- user IAM roles
+
+
+#!/bin/bash
+rm -rf /root/s3
+mkdir /root/s3/
+cd /root/s3
+git clone https://github.com/gangireddydanam/awsmiddleware.git
+cd /root/s3/awsmiddleware/
+/usr/local/bin/aws s3 cp index.html s3://dev-aws.awsmiddleware.in/
+
+
+================
+Day-22-Week-5
+================
+Devops
+Jenkins + full CI+ CD, Apache, Tomcat
+maven and ant + build php website (wordpress or drupal)
+
+Cloud 
+======
+Route53 ,RDS and installtion mysql , postgresql , mongo database , redis--
+linux basics
+10 shell scripts
+
+
+lab: cfn script and rules are 0.0.0.0 -- 22, 0.0.0.0/0--80
+
+
+#!/bin/bash
+#Installing aws cli
+yum update -y
+yum install unzip -y
+sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+unzip awscli-bundle.zip
+
+#build the website from github and push into s3
+rm -rf /root/s3
+mkdir /root/s3/
+cd /root/s3
+git clone https://github.com/gangireddydanam/awsmiddleware.git
+cd /root/s3/awsmiddleware/
+/usr/local/bin/aws s3 cp index.html s3://dev-aws.awsmiddleware.in/
+
+
+
+
+how s3/servers will get the code from dev team ?
+
+
+when developer pushes changes to scm ..this steps anyone happen
+
+
+--->scm can send notification to ci-server(webhook) and ci-server automatically uploads your code into s3/servers.
+--->ci-server will ask scm(poll scm) for if any changes and if modified it gets updated code and 
+    ci-server automatically uploads your code into s3/servers.
+---->Run manuall task to get the code and ci-server automatically uploads your code into s3/servers.
+---->Run or Build periodically(night builds) to get the code from scm and ci-server automatically uploads your code into s3/servers.
+
+
+
+
+
+================
+Day-23-Week-5
+================
+
+user created , what happens ?
+
+/home/xxx ---one home directory will be created for that user
+user id and group id 
+/etc/passwd--user entry 
+/etc/group--group entry
+1000+
+only root can create the normal users.
+
+
+
+/etc
+hostname
+hosts
+passwd
+shadow
+group
+
+cat 
+less
+more
+env
+set
+useradd
+id
+w
+uptime
+history
+hostname
+whoami
+last
+usermod
+
+
+
+sudoer ---how do you make normal user as sudoer
+how to modification of user with usermod ?
+home directory
+group changes
+
+================
+Day-23-Week-5
+================
+
+normal user want to switch to root user , normal user need to know root password.
+normal user switching to other normal user , normal user want to know other normal user password.
+
+su - root 
+su 
+su -
+
+you can make an option asking password or without asking password
+sudo su - root 
+sudo su 
+sudo su -
+
+
+#!/bin/bash
+#Installing aws cli
+yum update -y
+yum install unzip git -y
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+unzip awscli-bundle.zip
+sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+
+#build the website from github and push into s3
+rm -rf /root/s3
+mkdir /root/s3/
+cd /root/s3
+git clone https://github.com/gangireddydanam/awsmiddleware.git
+cd /root/s3/awsmiddleware/
+/usr/local/bin/aws s3 cp index.html s3://dev-aws.awsmiddleware.in/
+
+
+Roles = AWS services
+
+
+
+crontab
+
+* * * * * scriptname
+
+
+min hours date-of-month month day-of-weeky   script
+
+
+
+30 08 10 06 * /home/maverick/full-backup
+
+jun --10--
+
+00 11,16 * * * /home/maverick/bin/incremental-backup
+
+11am
+4pm 
+every day every month every week of day 
+
+
+
+
+
+00 09-18 * * * /home/maverick/bin/check-db-status
+9am to 6pm 
+
+
+
+
+
+
+
+*/5 * * * * /root/s3upload1.sh 
+
+7
+
+/home/maverick/check-disk-space
+every 10 minutes
+
+
+every month 11am
+
+00 11 30,31 * * script
+
+
+/var/log/cron*
+crond -----
+
+crontab -l
+crontab -u <username> -l 
+crontab -e
+
+
+
+CI tool 
+
+
+jenkins
+Go-CD
+Bamboo
+cicrleCI
+Hudson
+
+Jenkins
+========
+pre-requ: java
+instllation : yum , rpm , war , jar 
+
+
+
+yum ----/etc/yum.repo.d/*.repo(base url)-----
+
+
+[root@jenkins ~]# wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
+[root@jenkins ~]# rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
+yum install jenkins -y
+
+systemctl start jenkins
+
+/var/lib/jenkins
+
+cloudbees-jenkins
+jenkins --opensource
+
+oracle---hudson---jenkins 
+
+java 
+====
+SUN java ------ibm java, apple java , oracle java, openjdk(redhat)
+
+
+useradd: cannot open /etc/shadow
+
+
+
+
+https://s3.amazonaws.com/awsmiddleware-admin/jenkins_install.wrf
+
+https://s3.amazonaws.com/awsmiddleware-admin/ci_cd.wrf
+
+
+
+================
+Day-24-Week-5
+================
+installting tomcat 
+yum 
+war
+jar
+rpm 
+zip/tar/tgz/
+
+archiving commands
+====================
+
+zip -r filename.zip directory ---create the zip 
+unzip filename.zip -d targetdirectory ---unzip 
+less filename.zip --to see zip contenet without extract 
+unzip -l filename.zip --to see zip contenet without extract 
+
+.tar 
+
+tar -cvf filename.tar directory ---create tar 
+tar -xvf filenma.tar --extract tar 
+tar -tvf filname.tar ----to list without extract
+
+.tar.gz or .tgz
+
+tar -cvzf filename.tar directory ---create tar 
+tar -xvzf filenma.tar --extract tar 
+tar -tvzf filname.tar ----to list without extract
+
+To create .gz (dont run on live filename)---old logs or old files not being used.
+gzip filename ---->creates filename.gz
+to unzip 
+gunzip filename.gz ---->creates filename
+
+
+static code --1000pages --- .zip or .tar  or tgz or tar.gz 
+
+html---ReactJS-----ec2---apache or nginx
+
+
+upto ---1024 --ports --root or admin or sudoer 
+
+yum install httpd -y
+systemctl start httpd
+
+
+java-----j2se and j2ee and j2me
+j2ee---------->servlets,jdbc,structs,jsp,springs,hibernate,springboot,ejb ----- .war , .ear , .jar , .har , .sar 
+
+java pages---->first.java ------>compile ---->first.class ---->build(ant,maven) --->.war , .ear , .jar(pack of classes)
+
+
+Tomcat(only war ) ---no EJB----web container ------java web server--static + java  
+jboss/wildfly-------application servers---redhat ---web+ejb 
+weblogic-----applicaiton servers ---oracle --web + ejb 
+websphere-------applicaiton servers---IBM ---web + ejb 
+glassfish ----application servers ---oracle ---web + ejb 
+
+Application structure
+
+EAR=WAR + JAR(ejb)
+
+
+https://www.google.co.in/search?q=eclipse+java+project+structure&rlz=1C1CHBH_enIN814IN815&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj_tcS-v5HeAhXSbSsKHcaJClUQ_AUIDigB&biw=1337&bih=638#imgdii=q5QXc1zoSaKorM:&imgrc=3Y9UgvHX5b6cZM:
+
+
+
+war ---tomcat ----java(jdk + jre) 
+
+java instaltion 
+yum 
+rpm 
+tar.gz
+
+rpm -ivh filename.rpm ---to install 
+rpm  -e packagename -- to uninstall 
+rpm -qa pkg --- to check installed to not
+
+Tomcat instaltion 
+
+yum 
+tar.gz
+zip 
+https://s3.amazonaws.com/awsmiddleware-admin/tomcat_jenkins.wrf
+
+
+
+
+
+
+=================
+Day-26th
+==================
+jenkins -setup
+with war installation.
+
+Tomcat ---
+java 
+yum 
+rpm----> 
+zip 
+
+instal the wget 
+Download --- wget----.rpm 
+rpm -ivh filename.rpm 
+
+https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+wget 
+
+wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
+
+
+
+Download 
+zip---unzip 
+change the permisson
+start the tomcat
+
+
+https://tomcat.apache.org/download-80.cgi
+
+install the unzip,wget 
+wget http://mirrors.wuchna.com/apachemirror/tomcat/tomcat-8/v8.5.34/bin/apache-tomcat-8.5.34-windows-x64.zip
+unzip apache-tomcat-8.5.34-windows-x64.zip
+chmod -R 755 apache-tomcat*
+
+Tomcat directory structure
+bin---stop and start 
+conf--configuration files
+logs ---
+webapps -- deployment directory 
+work and temp ---temporary directories 
+
+
+Deployment is two types : hot and cold 
+hot deployment is while running service 
+cold --stop service and deploy and start 
+
+
+/root/.jenkins/workspace/s3upload/
+/root/.jenkins/jobs/s3upload 
+
+https://s3.amazonaws.com/awsmiddleware-admin/jenkins_setup.wrf
+what is git and github ?
+what are stages in git ?
+what is untrakced area in git ?
+tell me linux folder structure ?
+dev----scm---ec2(aws cli)---s3------
+===============
+Day-27th
+==================
+lab: bring tomcat as a os level service.
+
+
+Tomcat --deployment - webapps
+logs 
+manager
+host-manager 
+localhost 
+localhost_access.log ( similar to apache/nginx-alll webservers -- access.log)
+catalina.out log
+
+conf/server.xml 
+
+head (head filename , head -100 filename)
+tail (tail filaname , tail -f filename , tail -100f filename, tail -100 filename)
+
+users /user id/login users/login id
+two types
+local users
+ldap /ad users ------------>
+lab: jenkins with ldap integration and assign the users to do some jobs.
+
+
+
+#!/bin/bash
+cd /root/.jenkins/workspace/prod-s3-upload
+aws s3 cp index.html s3://www.awsmiddleware.in/
+
+#!/bin/bash
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+unzip awscli-bundle.zip
+sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+
+
+lab: jenkins integration with seleneium
+
+https://s3.amazonaws.com/awsmiddleware-admin/jenkins_2.wrf
+
+
+
+
+================
+Day-28th
+==================
+linux review
+jenkins - topic
+ant , maven 
+
+
+
+
+
+
+
+what is executor in jenkins ?
+what are the plugins u used in jenkins ?
+
+https://www.slideshare.net/AWSUsersGroupBengalu
+
+REDBUS
+---------->DEV , qal , e2e , perf , prod
+
+ubuntu 
+
+#!/bin/bash
+apt-get update 
+apt-get install apache2
+systemctl start apache2
+systemctl enable apache2
+
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/gangireddydanam/apachelabs.git
+git push -u origin master
+
+how do you setup master and slave in jenkins ?
+how do you enable full ci and cd with jenkins ?
+
+plugin : github integration and blue ocean 
+
+
+executor : parallel number of jobs
+label : group of slaves or slave 
+
+matrix
+master and slave
+enable the plugins
+
+#!/bin/bash
+cd /root/.jenkins/workspace/
+aws s3 cp index.html s3://qal-aws.awsmiddleware.in/
+
+https://s3.amazonaws.com/awsmiddleware-admin/jenkins_3.wrf
+
+
+
+
+
+
+
+================
+Day-29th
+==================
+Runtime environment = your code running location 
+shell scripting doesnt have module support and its stateless.
+base packages :
+base agents: monitoring agent (appd,new relic,nagios) and log agent ( elk, splunk),ldap agents. 
+
+Tomcat instaation script
+
+#!/bin/bash 
+yum install unzip wget git -y
+#java Downloading 
+wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
+#installtion of java
+rpm -ivh jdk-8u131-linux-x64.rpm
+#Download tomcat 
+mkdir /opt/devops
+cd /opt/devops
+wget http://mirrors.wuchna.com/apachemirror/tomcat/tomcat-8/v8.5.34/bin/apache-tomcat-8.5.34-windows-x64.zip
+unzip apache-tomcat-8.5.34-windows-x64.zip
+chmod -R 755 apache-tomcat*
+mv apache-tomcat* tomcat
+/opt/devops/tomcat/bin/startup.sh
+
+
+Apache web server / httpd server /http server 
+
+#!/bin/bash 
+yum update -y
+yum install unzip wget git -y
+yum install httpd -y
+systemctl start httpd
+systemctl enable httpd
+
+
+Nginx
+
+#!/bin/bash 
+yum update -y
+yum install unzip wget git -y
+wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+#curl http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -o epel-release-latest-7.noarch.rpm
+rpm -ivh epel-release-7*.rpm
+yum update -y
+yum install nginx -y
+systemctl start nginx
+systemctl enable nginx
+
+
+
+
+
+
+
+
+
+
+#!/bin/bash 
+yum install unzip wget git -y
+#java Downloading 
+wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
+#installtion of java
+rpm -ivh jdk-8u131-linux-x64.rpm
+#Download tomcat 
+mkdir /opt/devops
+cd /opt/devops
+wget http://mirrors.wuchna.com/apachemirror/tomcat/tomcat-8/v8.5.34/bin/apache-tomcat-8.5.34-windows-x64.zip
+unzip apache-tomcat-8.5.34-windows-x64.zip
+chmod -R 755 apache-tomcat*
+mv /opt/devops/apache-tomcat* tomcat
+/opt/devops/tomcat/bin/startup.sh
+
+
+
+/root/.jenkins/jobs/dev-apache-build/*--config.xml 
+/root/.jenkins/workspace/dev-aapche-build/
+
+
+/usr/local/bin/aws s3 cp s3://artifacts-labs-apps/dev-apache-$version.zip .
+scp -i <pemfile> dev-apache-$version.zip ubuntu@ip:/tmp/
+ssh -i <pemfile> ubuntu@ip
+systemctl stop apache2
+cd /tmp/
+unzip dev-apache-$version.zip 
+cd dev-apache-$version
+cp -r * /var/www/html/
+systemctl start apache2
+
+
+Build---java ---.war /jar/ear
+
+ant --build tool
+build.xml
+targets
+
+ant targetname
+
+ant init 
+
+ant compile
+ant init
+
+https://s3.amazonaws.com/awsmiddleware-admin/jenkins_ant_maven_tomcat.wrf
+
+te
+
+
+C:\Users\X\Desktop
+C:\Users\Y\Desktop
+
+te
+
+C:\Users\X\Desktop
+C:\Users\Y\Desktop

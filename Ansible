@@ -109,3 +109,61 @@ PLAYBOOK STRUCTURE FOR NOTIFICATION AND HANDLERS
       state: restarted
 -------------------------------------------------------------------------------------------------------------------------------------------
 
+PLAYBOOK FOR INSTALLING APACHE, PHP AND MYSQL
+------------------------------------------------
+---
+-name: isntalling apache and php and mysql
+ hosts: node/server name
+ become: true
+ become_user: root
+ gather_fact: true
+ task:
+    -name: "installing apache2"
+     package: name=apache2 state=present
+    -name: "installing apache2-php5" 
+     package: name=liapache2-mod-php state=present
+    -name: "install php-cli"
+     package: name=php-cli state=present
+    -name: "install php-mcrypt"
+     package: name=php-mcrypt state=present
+    -name: "install php-mysql" 
+     package: name=php-mysql state=present
+    -name: "install mysql" 
+     package: name=mysql-server state=present
+ -------------------------------------------------------------------------------------------------------------------------------------------
+
+---
+-hosts: all
+ remote-user: root
+ task:
+  -name: install pip
+   apt: name=python-pip state=present
+  -name: install "libmysqlclient-dev" 
+   apt: name=libmysqlclient-dev state=present
+  -name: install the python MYSQLB module
+   pip: name=MYSQL-python
+  -name: create database user edureka
+   mysql_user: user=edureka password=edureka priv=*.*:ALL state=present
+  -name: create DB edu
+   mysql_db: db=edu state=present
+  -name: create a table reg
+   command: mysql -u edureka pedureka -e 'CREATE TABLE reg {name varchar(30)}, {email varchar(30)};' edu
+   ----------------------------------------------------------------------------------------------------------------------------------------
+---
+-name: copy
+ hosts: node/servername
+ become: true
+ become_user: root
+ gather_facts: true
+ tasks:
+   - name: copy file
+     copy: src=source of the file(.html) dest=destination of the file(.html)
+   - name: copy file
+     copy: src=source of the file(.php) dest=destination of the file(.php)
+   - name: copy file
+     copy: src=source of the file(.php) dest=destination of the file(.php)
+ ------------------------------------------------------------------------------------------------------------------------------------------
+ 
+  
+  
+  

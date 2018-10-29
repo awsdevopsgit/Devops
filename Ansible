@@ -1,3 +1,7 @@
+-->ansible inventory is list of IP addresses of host servers.
+-->playbook describes the entire work flow of our system
+-->ansible is agent less, easy understand and write, push configuration and 
+
 $ansible all -m ping
 $ansible all -a "ls -ls /home/ansible"
 $sudo or ansible all -s -a "cat /var/log/messeges"

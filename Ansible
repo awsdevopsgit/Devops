@@ -1,6 +1,16 @@
 -->ansible inventory is list of IP addresses of host servers.
 -->playbook describes the entire work flow of our system
 -->ansible is agent less, easy understand and write, push configuration and 
+-->playbooks contains plays and plays contain tasks and task call modules
+   handlers can be run by task and will run at the end.
+MODULES
+---------
+Package mgmt: yum apt
+Remote execution: shell command
+Service mgmt: service
+File handling: copy template
+SCM: bzr, git, subversion
+
 
 $ansible all -m ping
 $ansible all -a "ls -ls /home/ansible"

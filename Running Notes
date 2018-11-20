@@ -3873,3 +3873,1015 @@ te
 
 C:\Users\X\Desktop
 C:\Users\Y\Desktop
+
+
+
+$ git push
+To C:/Users/Madhuchinna/gitlabs/test.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'C:/Users/Madhuchinna/gitlabs/test.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+Madhuchinna@DESKTOP-4U95NE4 MINGW64 ~/gitlabs/workspace2 (master|MERGING)
+$ git log
+
+
+
+Madhuchinna@DESKTOP-4U95NE4 MINGW64 ~/gitlabs/workspace2 (master|MERGING)
+$ git merge origin origin/master
+error: Merging is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: Exiting because of an unresolved conflict.
+
+Madhuchinna@DESKTOP-4U95NE4 MINGW64 ~/gitlabs/workspace2 (master|MERGING)
+$
+
+
+
+
+Branching strategy
+development,release --1
+tag based strategy--2
+
+scm ----devlopment ----------webhooks-----jenkins ---build job --snapshot-pack ----artifactory ---deploy/dev----dev
+qal 
+
+devlopment branch code we will deploy in lower environments(dev/qal/e2e/perf)
+
+at the one week before sprint release ---devlopoment branch code and merge into master/release branch
+
+scm ----release/master -------webhooks-----jenkins ---build job --relase-pack ----artifactory ---deploy/e2e----e2e
+
+
+release -pack ----- prod 
+
+snapshot-pack---lower environment 
+relase 
+
+git init 
+git init --bare
+git status
+git log
+git show
+git commit
+git config
+git conig --list
+git push 
+git pull
+git merge 
+git clone
+git --cherry-pick
+git stash 
+
+brnaching strategy
+
+https://s3.amazonaws.com/awsmiddleware-admin/scm.wrf
+
+
+
+
+
+
+
+================
+Day-31th
+==================
+EBS--aws 
+git
+maven life cycles - pom.xml
+
+creating the repo
+creating workspace (clone)
+created branch
+merge conflicts 
+stashing
+
+HEAD: points to latest commit id .
+
+when you doing push , it says failed , how do you solve it ?
+failed to push some ref
+
+pull the remote changes to local worksapce/working area and if asks make it with merge with commit message and push it again.
+
+git pull origin master --allow-unrelated-histories
+
+.gitignore
+*.txt 
+
+create the ignore files to untrack in the github
+
+developer does a code whole day and he has not commited , how can he save whole work and he has to start same work on tommorow
+?
+
+take the bakcup of current workspace.
+git stash
+git stash clear
+git stash apply
+
+how do resolve branch conflicts when you merging branches ?
+CONFLICT (content): Merge conflict in index.html
+
+git merge source destination
+
+check the conflicts files and clear the conflicts( update required lines of code in the files)
+and after updating the file . add into staging aread and commit.
+
+git pull=git fetch + git merge 
+
+stashing
+branches
+bare repo
+push conflicts
+branch conflicts
+
+
+EBS volumes
+block -- hard disc
+
+infra --computing , storage , network 
+Root device=C drive--/dev/sda
+
+how to create the file system ?
+add a disc into the linux machine---create a volume and attach it.
+format (ext3,ext4 , xfs)--mkfs.ext4 /dev/xvdf 
+update the /etc/fstab file
+/dev/xvdf                                 /opt/newfs              ext4    default         0 0
+mount 
+
+
+tomorrow: what is sector in disk and track and header in disc 
+what is RAID levels in hard disc and why we use ?
+what is nfs and how do create ?
+maven life cycle 
+
+https://s3.amazonaws.com/awsmiddleware-admin/scm_1.wrf
+
+
+================
+Day-32th
+==================
+gangireddydanam@gmail.com
+
+https://aws.amazon.com/events/awsome-day/awsome-day-online/#agenda
+
+maven 
+build project
+store the artifacts into s3 
+we will deploy in remote tomcat
+master and slave 
+pipeline
+sns/sqs/ses --one email
+ram monitoring
+
+
+code ---test cases ---your code ----github----build --maven test 
+
+
+tomorrow:
+SNS servicce
+cross iam role ?
+what is pipeline 
+
+
+
+/dev/sda1
+
+
+vol-01af9688a2d1f7df8
+
+
+
+
+
+
+pom.xml
+
+
+lab: find the andrioid project , ant projects, maven projects in github --5 projects each and build those with jenkins
+prepare a document step by step and share.
+
+maven imp : pom.xml and lifecycles
+goals and dependencies and plugin information
+
+
+
+sending an alert when cpu reaches or system goes down ..like all kind off issues from cloudwatch with sns.
+simple notification service
+
+https://s3.amazonaws.com/awsmiddleware-admin/mvn.wrf
+
+
+
+
+
+
+33-class 
+================
+
+mvn builds
+nexus 
+pipeline
+docker 
+
+lab: from jenkins send email
+lab: 
+add users in jenkins and give them read only access to jobs
+devuser--readonly
+testuser--readonly
+adminuser--build and execute 
+
+
+
+
+nexus is storage location for artifacts/builds/targets/binaries/software/delivery .
+free and commercial version.
+
+lab: 
+jenkins -----mvn project --build---war ---nexus
+deploy-name--dev --deploy tomcat 
+
+
+
+how do you setup password less setup ?
+run the ssh-key
+
+
+apache-tomcat-8.5.34
+
+pipeline --job
+
+build
+test 
+pacakge
+deploy
+test cases 
+
+pipeline --sequence of jobs/sequence of stages 
+Jenkinsfile--github--groovy language/dsl 
+pipeline --  
+
+
+create a pipeline job --Jenkisnfile 
+
+jenkins has two views --1 classisc 
+2 blue ocean view ---pipeline -- 
+
+https://s3.amazonaws.com/awsmiddleware-admin/mvn_nexus.wrf
+
+
+https://s3.amazonaws.com/awsmiddleware-admin/docker-1.wrf
+
+https://s3.amazonaws.com/awsmiddleware-admin/docker-2.wrf
+
+lamda
+
+https://aws.amazon.com/getting-started/projects/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/
+
+class-39
+===========================
+Day-32th
+==================
+gangireddydanam@gmail.com
+
+https://aws.amazon.com/events/awsome-day/awsome-day-online/#agenda
+
+maven 
+build project
+store the artifacts into s3 
+we will deploy in remote tomcat
+master and slave 
+pipeline
+sns/sqs/ses --one email
+ram monitoring
+
+
+code ---test cases ---your code ----github----build --maven test 
+
+
+tomorrow:
+SNS servicce
+cross iam role ?
+what is pipeline 
+
+
+
+/dev/sda1
+
+
+vol-01af9688a2d1f7df8
+
+
+
+
+
+
+pom.xml
+
+
+lab: find the andrioid project , ant projects, maven projects in github --5 projects each and build those with jenkins
+prepare a document step by step and share.
+
+maven imp : pom.xml and lifecycles
+goals and dependencies and plugin information
+
+
+
+sending an alert when cpu reaches or system goes down ..like all kind off issues from cloudwatch with sns.
+simple notification service
+
+33-class 
+================
+
+mvn builds
+nexus 
+pipeline
+docker 
+
+lab: from jenkins send email
+lab: 
+add users in jenkins and give them read only access to jobs
+devuser--readonly
+testuser--readonly
+adminuser--build and execute 
+
+
+
+
+nexus is storage location for artifacts/builds/targets/binaries/software/delivery .
+free and commercial version.
+
+lab: 
+jenkins -----mvn project --build---war ---nexus
+deploy-name--dev --deploy tomcat 
+
+
+
+how do you setup password less setup ?
+run the ssh-key
+
+
+apache-tomcat-8.5.34
+
+pipeline --job
+
+build
+test 
+pacakge
+deploy
+test cases 
+
+pipeline --sequence of jobs/sequence of stages 
+Jenkinsfile--github--groovy language/dsl 
+pipeline --  
+
+
+create a pipeline job --Jenkisnfile 
+
+jenkins has two views --1 classisc 
+2 blue ocean view ---pipeline -- 
+
+
+
+lab: setup wordpress and drupal
+s3 websites
+petclinic
+lamda with s3
+dynamodb
+nosql in aws
+redis
+node.js
+
+
+
+
+https://s3.amazonaws.com/awsmiddleware-admin/docker-1.wrf
+
+
+
+
+
+
+class-36
+=====================
+docker instaltion
+docker -nginx
+docker -jenkins
+docker -apache
+docker basics
+created the Dockerfile--image--container--k8/docker
+what is docker ? container technolgoy
+why we use ? resource optimization
+where we use ? node,tomcat ,reactjs,webservices
+
+minikube--k8--kubernetes
+why we go for kubernetes ? to manage multiple containers/pod
+
+Dockerfile--image--container--k8/docker swarm 
+
+redhat-repo.repo
+filename.repo--baseurl
+how to enable epel for docker ?
+
+
+
+kubectl run first-deployment --image=katacoda/docker-http-server 
+
+class-37
+=============
+setting up k8 in local with minikube and eks and ecs .
+what is code analysis ? why we use it ? what are the tools available ?
+what is CI and CD ?
+
+
+Setting up k8 cluster in vms
+first launch the vms(min 2)
+make one as a master and other ones as slaves.
+in master install the following components
+-->docker
+-->kubectl
+-->kubeadm
+-->other kube features
+
+in slave
+-->docker
+-->kubectl 
+--->few kube features
+
+in master start the kube services
+Generate the security token -kubeadm
+
+Goto slave machine and provide the security token to add slave with master.
+
+if you run the conatiner , we have to access container service with the port.
+port surely to be exposed to host machine(nodeport).
+
+to know how many cpus 
+cat /proc/cpuinfo
+top + 1
+
+kubectl cheat code
+
+kubectl cluster-info
+kubectl get nodes 
+
+setting environment variables in unix
+.bashrc
+.bash_profile
+/etc/profile
+ or temporarily
+ 
+ export 
+ 
+ namespace is a division or section separates group of containers/pod
+ 
+
+
+ 
+ 1000
+ kubectl get pods
+ 
+ create a namespace with app1
+ 
+ 10 pods---app1
+ 
+ kubectl get pods -n app1 
+ 
+ when you instal the kubernets default name spaces will be there.
+ 
+ default
+ kube-system
+ 
+ kubectl interacts with api-servers and queries the commands.
+ api-server is residing inside the master.
+ 
+ api-server intally contacts with kubelet residing in the slave.
+ the slaves givien informaiton will be stored in the etcd which is in master.
+ 
+ 
+can you explain me kubernets architecture ?
+what is name space ?
+how many types of networks in conatiner/docker ?
+what is prometheus ?
+
+class-38
+==========
+labs of lamda
+ECS
+
+https://docs.docker.com/toolbox/toolbox_install_windows/
+
+https://download.docker.com/win/stable/DockerToolbox.exe
+
+
+ECS
+========
+1)create the repo--images
+2)Create the task definition--deployment.yaml
+3)cluster --
+
+
+deployment 
+svc
+ingress
+
+
+
+ECS
+cluster
+security groups
+load balancers
+target group
+iam roles 
+repo--image repo/ecr
+task definition---containers/port/log/memory/image
+svc--task defintion----replicas/load balancers--target group
+
+dokcer build
+docker tag
+docker push
+
+Goto the service/task defintion for the deployment with udpate service.
+
+Test the url with alb end point and check the status of pods with healthy or not.
+
+ecs-demo-lab
+https://docs.aws.amazon.com/AWSGettingStartedContinuousDeliveryPipeline/latest/GettingStarted/CICD_Jenkins_Pipeline.html#create-import-ssh-keys
+
+
+
+class-xxx
+==================
+lamda 
+rds
+kubernetes architecture/docker 
+
+
+
+
+.net-----IIS
+staticcode---s3, apache, nginx,webservers---OS---hardware(bare metal servers)----hypervisors---Esxi/xen 
+flipkart/amazon ----24/7--365
+
+servers has to be running 24/7--365 days
+100 ec2 servers----you have to pay the bill if users are came or not.
+
+i changed from vms to containers/pod
+
+static code----containers(apache image) ----Docker engine----OS---hardware ---hypervisor----Esxi/xen
+10 ec2 --10 containers---10 ec2 cost of i have to pay.
+
+concept : ServerLess 
+
+room--if you need light you have to power on - 24/7-365---pay the more bill
+latest technology : sensor ---person in that area..your light will power on co
+
+static code----component(lamda)----it will accept request when users come ---
+
+your code --image---container---port --accept connection ---no connection--container will stop
+
+within seconds
+
+how lamda will be charged ?
+
+lamda---scheduling/job/cron tasks,event based applications
+
+lamda wont for work longer time processing applications.
+
+
+upload a document ---s3--code---lamda--SNS---
+
+modiification at x component-----lamda ---y component ----event based 
+
+why we go for lamda ? cost optimization.
+
+AWS service: lamda
+technology : serverless
+computing
+
+lab:-1
+S3
+cognito pool---authentication
+
+Amazon Cognito provides authentication, authorization, and user management for your web and mobile apps
+
+authentication : username and password
+authorization: role
+https://www.google.co.in/search?q=aws+cognito+with+facebook&rlz=1C1CHBH_enIN814IN815&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjY26zw4s3eAhUSS48KHU_aAmwQ_AUIECgD&biw=1078&bih=510#imgrc=bAHQp-Qh_QakgM:
+
+DynamoDB--AWS managed service.
+
+Databases types
+Relational(sql) and non-relational(no-sql)
+
+
+Relational(OLTP): columns and rows----record--structuring the data(meta data)/schema to enter ---Sql databases 
+Name   FatherName 
+storage is limited 
+
+relational database---old data----data warehouse ----analytics--reporting--business decisions 
+
+
+no-sql(OLAP) : no need table design, no need schema--no record format---key,value, column,json 
+sotrage: unlimited.
+
+AWS service : API Gateway(webservices---soap(xml)/rest(jsoN))---Enttry point of authentication.
+
+example: interview----IT park --Entrace gate---pass-------company---ID(temporary badge)
+
+API Gateway allows you to securely connect mobile and web applications to business logic hosted on AWS Lambda, 
+APIs hosted on Amazon EC2, or other publicly addressable web services hosted inside or outside of AWS. With API Gateway,
+ you can create and operate APIs for backend services.
+
+laptop---username and password--logout--close the session--relogin --username and password
+mobile app--intall---email/pwd---close the session---directly login 
+
+https://www.google.co.in/search?q=api+gateway+in+aws&rlz=1C1CHBH_enIN814IN815&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjqvfaw583eAhUKrI8KHfrFAHcQ_AUIDygC&biw=1078&bih=510#imgrc=VgwQY3GapQOT9M:
+
+https://aws.amazon.com/blogs/compute/secure-api-access-with-amazon-cognito-federated-identities-amazon-cognito-user-pools-and-amazon-api-gateway/
+
+wildrydes-gangi-danam
+
+
+
+
+in python-lamda 
+to evaluate the expression and return a value .
+
+Datacenter/availability zone----DyanmoDB(aws managed service)----no OS----Hardware
+
+use-cases: https://aws.amazon.com/getting-started/use-cases/
+poc---proof of concept
+
+lab:lamda
+https://aws.amazon.com/getting-started/tutorials/run-serverless-code/?trk=gs_card
+https://aws.amazon.com/getting-started/tutorials/create-a-serverless-workflow-step-functions-lambda/?trk=gs_card
+https://aws.amazon.com/getting-started/tutorials/handle-serverless-application-errors-step-functions-lambda/?trk=gs_card
+https://aws.amazon.com/getting-started/tutorials/scheduling-a-serverless-workflow-step-functions-cloudwatch-events/?trk=gs_card
+https://aws.amazon.com/getting-started/tutorials/configure-connect-serverless-mysql-database-aurora/?trk=gs_card
+https://aws.amazon.com/getting-started/tutorials/build-serverless-app-codestar-cloud9/?trk=gs_card
+
+
+AWS service: auto scaling
+
+launch ec2 machines based on the load ( cpu/disc/network/custom metrics)
+
+first create the launch configurion(template)--what kind of ec2 you want to create.
+create the autoscale group
+
+Tomorrow: code review/quality/analysis --gerrit 
+what is 
+why we use
+how we use
+where we use
+when to use 
+
+aws servcie: elastic cache 
+
+RDS
+
+labs:------ec2----jdk----tomcat----- petclinic.war ------3306---mysql(ec2)
+------ec2----jdk----tomcat----- petclinic.war ------3306---mysql(aws service-RDS)
+
+------ec2----jdk----tomcat----- petclinic.war ------caching service(redis)/elastic cache---3306---mysql(aws service-RDS)
+
+
+redis 
+cognito
+api-gateway
+lamda 
+serverless
+container
+microservices
+images
+k8
+ecs
+source code repo/container repo/registry/ecr 
+
+To connect to the database , we need db tools/clients ----endpoint --username and password, port number 
+sql developer--oracle
+mysql workbench--mysql 
+sql developer studio---ms-sql 
+
+
+charge for db
+storage
+instance class 
+per calls
+
+
+
+
+
+
+ssh client(gitbash/putty)--22--------------linux(apache/tomcat/)-------------http/https(browser/mobile app)
+windows client(rdp)---3389--------------windows
+sql developer tools(client)--mysql workbench--3306-------------rds(mysql)-------application(tomcat/apache/lamda)----enduser
+
+
+
+
+lab:-
+
+one database name called : pre-prod
+another name : prod
+
+
+pre-prod
+ec2---tomcat---petclinic.war------pre-prod-mysql(rds)
+
+prod
+ec2---tomcat---petclinic.war------prod-mysql(rds)
+
+export data from prod and import into pre-prod.
+
+mysql commands--10 commands
+
+to connect mysql command
+mysql -h <db endpoint> -u <username> -p -dbname 
+
+To know db name
+show datbases;
+
+To switch to db
+use dbname;
+
+To see tables
+
+show tables;
+
+Creating the database
+
+create database dbname;
+
+create the user 
+
+Grant priviliges(select,update,delete,modifiction)
+
+
+lab: lamp ---with drupal,wordpress 
+
+
+CREATE DATABASE books;
+use books;
+CREATE TABLE authors (id INT, name VARCHAR(20), email VARCHAR(20));
+
+
+INSERT INTO authors (id,name,email) VALUES(2,"Priya","p@gmail.com");
+INSERT INTO authors (id,name,email) VALUES(3,"Tom","tom@yahoo.com");
+
+
+show databases;
+create database dummy;
+use dummy;
+show tables;
+CREATE DATABASE books;
+describe authors;
+use books;
+CREATE TABLE authors (id INT, name VARCHAR(20), email VARCHAR(20));
+INSERT INTO authors (id,name,email) VALUES(2,"Priya","p@gmail.com");
+INSERT INTO authors (id,name,email) VALUES(3,"Tom","tom@yahoo.com");
+
+select * from authors; 
+select id,name,email from authors where id=2;
+
+
+lab: jenkins job for db refresh (take the database dump in prod , copy the dump to pre-prod and import)
+
+lab: end to end with r53 to db (lamp,tomcat,s3,lamda)
+
+
+tomorrow lab: 
+sticky bit, how do you create it ?
+inode
+symlink
+how to create the file system ?
+vpc peering 
+
+lab: ec2---apache--php--(wordpress/drupal)-------------rds(db)
+
+https://s3.amazonaws.com/awsmiddleware-admin/rds.wrf
+https://s3.amazonaws.com/awsmiddleware-admin/rds-2.wrf
+
+https://s3.amazonaws.com/awsmiddleware-admin/petclinic.war
+
+
+https://s3.amazonaws.com/awsmiddleware-admin/petclinic_lab.txt
+
+
+
+
+
+
+
+
+
+
+
+
+lab: end to end with r53 to db (lamp,tomcat,s3,lamda)
+
+
+tomorrow lab: 
+sticky bit, how do you create it ?
+inode
+symlink
+how to create the file system ?
+vpc peering 
+
+lab: ec2---apache--php--(wordpress/drupal)-------------rds(db)
+
+
+Ansbile---IAC/CM 
+push model
+no agents
+password less setup
+/etc/ansible/--hosts , ansible.cfg 
+playbook--ansible-playbokk
+modules --ansible 
+roles--ansbile-galaxy
+list 
+jinja a=10 {{a}} 
+hosts --inventory (servers list)--static and dynamic inventory
+
+
+ansible -m name=httpd state=present 
+
+
+
+ping servername/ip 
+
+
+serverlist
+s1
+s2
+s3
+s4
+s5
+
+shell script ( spoon model) 
+#!/bin/bash
+for i in in 'cat serverslist'
+do
+nslookup  $i 
+done 
+
+/etc/ansible/hosts 
+s1
+s2
+s3
+s4
+s5
+
+ansible -m ping all (parallel/fork)
+
+Installation 
+-->EPEL
+
+Main configuration 
+/etc/ansible/ansible.cfg 
+/etc/ansible/hosts 
+
+
+redhat 7--
+bootup---power ---on ---process---systemd
+
+redhat6--
+
+init
+
+$ ssh -i tower.pem centos@18.206.225.3
+Last login: Wed Oct 31 16:37:15 2018 from nat-pool-rdu-t.redhat.com
+
+  Welcome to Ansible Tower!
+
+  Log into the web interface here:
+
+    https://10.42.0.42/
+
+    Username: admin
+    Password: je7jE3gugqLM
+
+  The documentation for Ansible Tower is available here:
+
+    http://www.ansible.com/tower/
+
+  For help, visit  http://support.ansible.com/
+[centos@ip-172-31-94-244 ~]$
+
+#!/bin/bash
+#changes the hostname 
+echo slave1 >/etc/hostname 
+ip=`hostname -i`
+echo "$ip slave1" >>/etc/hosts
+hostname -F /etc/hostname 
+
+#allow login other than ec2-user
+sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+service sshd restart 
+#setting the password for the root user 
+echo 12345 | passwd root --stdin
+
+
+To replace the keyword with sed 
+
+sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+serviec sshd restart 
+
+ ansible all  -m yum -a "name=httpd state=present"
+ ansible all -m service -a "name=httpd state=started"
+
+
+ https://github.com/ansible/ansible-examples/tree/master/tomcat-standalone
+ 
+ 
+ 
+ installing tomcat
+ 
+how os boots in linux/windows ?
+boot up sequence of os ?
+
+create the jenkins ----create a job ----build a war ---hellow.war ---job-ansbile-deployment (playbook)
+another tomcat 
+playbook for deplyment of war file in tomcat
+
+
+playbook contains--roles---yaml--tasks 
+
+lab: create the ec2 with ansible
+create teh s3 bucket 
+create the load balancer
+
+
+
+#!/bin/bash 
+yum install unzip wget git -y
+#java Downloading 
+wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
+#installtion of java
+rpm -ivh jdk-8u131-linux-x64.rpm
+#Download tomcat 
+mkdir /opt/devops
+cd /opt/devops
+wget http://mirrors.wuchna.com/apachemirror/tomcat/tomcat-8/v8.5.34/bin/apache-tomcat-8.5.34-windows-x64.zip
+unzip apache-tomcat-8.5.34-windows-x64.zip
+chmod -R 755 apache-tomcat*
+sleep 5
+mv apache-tomcat-8.5.34 tomcat
+sleep 5 
+/opt/devops/tomcat/bin/startup.sh
+
+
+
+/opt/myapps/
+
+
+application-----apache/nginx(r.proxy)--DMZ--8009---tomcat----DB
+ajp=8009
+
+
+
+
+
+
+class--
+=============
+petclinic(tomcat + rds)
+pre-prod to prod---
+Autoscaling
+load --request----cpu/ram/network --goes high 
+
+desired=
+
+ami---autoscale--load /schedule 
+1am to 2am
+
+ami---launch configuration----autoscale
+
+
+Monitoirng ---logs(splunk/elk,ebk) ,infra(nagios,newrelic,appD , apm(new relic, appD,DataDog)
+
+
+lifecycle hooks
+nexus---hello-1.0.war ---hello-2.0.war 
+
+base image----user data script---tomcat + java+ download--hello-1.0.war ---- war file from nexus repo----ami------
+
+autoscaling---load balancer---healthy--
+
+terraform/cfn/spinnaker---
+
+
+
+
+
+
+
+tomcat---jenkins
+
+
+https://s3.amazonaws.com/awsmiddleware-admin/auto.wrf
+

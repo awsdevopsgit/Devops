@@ -4885,3 +4885,102 @@ tomcat---jenkins
 
 https://s3.amazonaws.com/awsmiddleware-admin/auto.wrf
 
+why we use k8 ?--to manage the containers---deployment,create,installtion,uninstallation,scalable
+why we go for docker ?
+
+
+
+
+all containers(deployment)----service---ingress--load balancer---route53/dns 
+
+10468 start.go:168] Error starting host: Error creating host: Error executing step: Creating VM.
+: Unable to start the VM: C:\Program Files\Oracle\VirtualBox\VBoxManage.exe startvm minikube --type headless failed:
+VBoxManage.exe: error: Failed to open/create the internal network 'HostInterfaceNetworking-VirtualBox Host-Only Ethernet Adapter #2' (VERR_INTNET_FLT_IF_NOT_FOUND).
+VBoxManage.exe: error: Failed to attach the network LUN (VERR_INTNET_FLT_IF_NOT_FOUND)
+VBoxManage.exe: error: Details: code E_FAIL (0x80004005), component ConsoleWrap, interface IConsole
+ 
+setup virtualbox
+setup minikube 
+setup kubectl ---choco
+
+
+
+yum----/etc/yum.repos.d/*.repo---base url ---repo urls---softwares 
+
+
+download the 
+rpm packages 
+
+
+/etc/httpd
+/etc/httpd/conf/httpd.conf-----DocumentRoot /var/www/html/ , DirectoryIndex index.html 
+/var/log/httpd/access.log , error.log 
+
+ip-----80--apache----/var/www/html/index.html 
+
+
+2 --vms
+
+ec2-----os(redhat)---apache--website---1gb--1cpu
+ec2-----os(redhat)---apache--website--1gb--1cpu
+
+website---container---Docker Engine---OS---
+website---container---Docker Engine---OS---
+website---container---Docker Engine---OS---
+website---container---Docker Engine---OS---
+website---container---Docker Engine---OS---
+website---container---Docker Engine---OS---
+
+Dockerfile---build---image---run--Container----DockerEngine---OS
+
+FROM 
+
+
+
+
+
+Dockerfile
+FROM scratch---rootfs----/ /bin/ /opt/ /tmp 
+COPY . /usr/local/apache2/htdocs/ 
+
+
+docker run -p <hostport>:<containerport> imagename 
+
+
+rootfs--apache--website ----OS(kernel)
+/var/www/html/
+/usr/local/apache2/htdocs
+
+unable to prepare context: context must be a directory: /tmp/docker/Dockerfile---build---image---run--Container----DockerEngine---OS
+
+
+80
+81
+82
+83
+84
+85
+--------------->service----ip address (ingress) -----host ip ----k8 
+ip
+ip:81
+
+docker run -p 
+
+
+
+kubectl sacle replica=100 web:1 
+
+
+FROM web:1
+COPY . /usr/local/apache2/ 
+
+
+docker tag e77f2d5d4c6d gangireddydanam/web:1 
+docker push gangireddydanam/web:1
+
+docker login --username=ramanujann1989 --email=ramanujann1989@gmail.com 
+https://s3.amazonaws.com/awsmiddleware-admin/docker-3.wrf
+
+
+
+https://s3.amazonaws.com/awsmiddleware-admin/microservices.wrf
